@@ -1,109 +1,41 @@
-# Template: Workshop Reader
-
-This repository is a template for Python-specific workshop readers for the UC 
-Davis DataLab. It uses [Jupyter Book][jb] to knit the reader. You can also 
-optionally use **Conda** to manage packages (instructions at the bottom).
-
-To get started, create a new repo on GitHub from this template
-([instructions][gh]), then `git clone` your new repo.
-
-[gh]: https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template
-[jb]: https://jupyterbook.org/en/stable/intro.html
-
-Once you've cloned the repo, here's a checklist of things to do to prepare it:
-
-1. **Conda** (optional): To create a new virtual environment with Conda, open 
-   a command line interface (such as Terminal) and run the following:
-
-   ```sh
-   conda create --name WORKSHOP_TITLE python=YOUR.DESIRED.VERSION
-   ```
-
-   Then activate the environment with:
-
-   ```sh
-   activate WORKSHOP_TITLE
-   ```
-
-   You'll need to install Jupyter Book before doing anything else. 
-
-   ```sh
-   conda install -c conda-forge jupyter-book
-   conda install -c conda-forge ghp-import
-   ```
-
-   You can skip this step if you're not going to use **Conda**.
-
-2. `README.md`: Replace the all-caps text with your workshop details.
-   + Title
-   + Quarter & year
-   + Author's name and email
-   + Helpers' names and email (optional)
-   + Reader URL
-   + Event URL
-   + Description, learning goals, & prerequisites
-
-3. `_config.yml`: Replace the all-caps text with your workshop details.
-   + Title
-   + Author
-   + Date (year only)
-   + URL
-
-4. `chapters/index.md`: You can write chapters as Markdown (`.md`) files,
-   Jupyter Notebook (`.ipynb`) files, or a mix of both. The template defaults
-   to Markdown files. If you want to use a Jupyter notebook for the front page,
-   delete `index.md` and use Jupyter to create `index.ipynb` instead.
-
-5. `_toc.yml`: This file is the table of contents for the book. Any chapters
-   that are not registered here will not appear in the book. The `index.md` (or
-   `index.ipynb`) and `01_example.md` chapters are already registered. Note
-   that you should not specify the file extension in the table of contents. If
-   you rename or add any chapters, you must update the table of contents in
-   order for them to appear in the book.
-
-6. Compile your book with:
-
-   ```sh
-   jupyter-book build .
-   ``` 
-
-   This will generate a new `_build/` directory, which will contain HTML 
-   versions of your reader. This should not be added to Git (a `.gitignore` 
-   file is already in the template).
-
-7. `git add` all of the changed files, then `git commit` and `git push`.
-
-8. This template is set up to serve the reader from the `gh-pages` branch of
-   the repository rather than a directory in the `main` branch (in contrast to
-   our Bookdown template). Once you've committed your files, you need to run
-   one more command, which will automatically push the rendered HTML files to
-   the `gh-pages` branch on GitHub:
-
-   ```sh
-   ghp-import -n -p -f _build/html
-   ```
-
-   Make sure the GitHub repo is configured to serve pages from the `gh-pages`
-   branch by going to `Settings/Pages` on GitHub. Select the `gh-pages` branch
-   if it isn't selected already. _You must run the `ghp-import ...` step every
-   time you wish to push updates to the live site on GitHub._
-
-9. `README.md`: Remove these template instructions, which end at this step, 
-   and, if you'd like, `git add` this file and `commit`/`push` it.
-
-# Workshop: WORKSHOP TITLE
+# Workshop: Text Analysis and Natural Language Processing for Data Science
 
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 
 _[UC Davis DataLab](https://datalab.ucdavis.edu/)_  
-_QUARTER YEAR_  
-_Instructor: YOUR NAME <<YOUR_EMAIL@ucdavis.edu>>_  
-_Maintainer: MAINTAINER'S NAME <<MAINTAINER_EMAIL@ucdavis.edu>>_  
+Spring 2024
+_Instructor: Tyler Shoemaker <<tshoemaker@ucdavis.edu>>, Carl Stahmer <<cstahmer@ucdavis.edu>>_
+_Maintainer: Tyler Shoemaker <<tshoemaker@ucdavis.edu>>_  
 
-* [Reader](https://ucdavisdatalab.github.io/YOUR_REPOSITORY/)
+* [Reader](https://ucdavisdatalab.github.io/workshop_nlp_reader/)
 * [Event Page](https://datalab.ucdavis.edu/eventscalendar/YOUR_EVENT/)
 
-YOUR DESCRIPTION, LEARNING GOALS, PREREQUISITES, ETC
+This week-long workshop series covers the basics of text mining and natural
+language processing (NLP) with Python. We will focus primarily on unstructured
+text data, discussing how to format and clean text to enable the discovering of
+significant patterns in collections of documents. Sessions will introduce
+participants to core terminology in text mining/NLP and will walk through
+methods that range from tokenization and dependency parsing to text
+classification, topic modeling, and word embeddings. Basic familiarity with
+Python is required. We welcome students, postdocs, faculty, and staff from a
+variety of research domains, ranging from health informatics to the humanities.
+
+Note: this series concludes with a special session on large language models,
+"The Basics of Large Language Models."
+
+By the end of this series, you will be able to:
++ Clean and structure textual data for analysis Recognize and explain how these
+  cleaning processes impact research findings
++ Explain key concepts and terminology in text mining/NLP, including
+  tokenization, dependency parsing, word embedding
++ Use special data structures such as document-term matrices to efficiently
+  analyze multiple texts
++ Use statistical measures (pointwise mutual information, tf-idf) to identify
+  significant patterns in text
++ Classify texts on the basis of their features
++ Produce statistical models of topics from/about a collection of texts
++ Produce models of word meanings from a corpus
+
 
 ## Contributing
 
