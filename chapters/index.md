@@ -33,7 +33,7 @@ experience using R.
 -->
 
 
-YOUR PREQUISITES
+YOUR PREREQUISITES
 
 
 Computing Requirements
@@ -65,3 +65,4 @@ in [DataLab's Office Hours][oh].
 [install-guide]: https://ucdavisdatalab.github.io/install_guides/python-and-python-tools.html#python-and-python-tools
 [oh]: https://datalab.ucdavis.edu/office-hours/
 -->
+

@@ -1,12 +1,24 @@
-# Table of contents
-# Learn more at https://jupyterbook.org/customize/toc.html
-
 format: jb-book
 root: chapters/index
-
-options:
-  numbered: true
-
-# Chapters may be written in either Markdown or as Jupyter Notebooks
-chapters:
-  - file: chapters/01_example
+parts:
+  - caption: Getting Started with Textual Data
+    numbered: true
+    chapters:
+      - file: chapters/01_logistics
+      - file: chapters/02_from-text-to-data
+      - file: chapters/03_cleaning-and-counting
+      - file: chapters/04_corpus-analytics
+      - file: chapters/05_clustering-and-classification
+      - file: chapters/06_topic-modeling
+      - file: chapters/90_assessment
+  - caption: Natural Language Processing with Python
+    numbered: true
+    chapters:
+      - file: chapters/50_logistics
+      - file: chapters/51_text-annotation-with-spacy
+      - file: chapters/52_classification-and-feature-engineering
+      - file: chapters/53_word-embeddings
+      - file: chapters/95_assessment
+  - caption: "Large Language Models: The Basics"
+  - numbered: true
+>>>>>>> fa0e486 (Initial upload of past reader content)
