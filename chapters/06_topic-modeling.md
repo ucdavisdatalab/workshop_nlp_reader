@@ -841,5 +841,5 @@ plot that represents topic similarity; the size of each topic circle
 corresponds to that topic's proportion in the model. Explore it some and see
 what you find!
 
-[vis]: https://ucdavisdatalab.github.io/workshop_getting_started_with_textual_data/topic_model_plot.html
+[vis]: https://ucdavisdatalab.github.io/workshop_nlp_reader/topic_model_plot.html
 
