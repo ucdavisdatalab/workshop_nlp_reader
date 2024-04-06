@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/index';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1. Overview" href="01_logistics.html" />
+    <link rel="next" title="1. Section Overview" href="01_logistics.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en-us"/>
   </head>
@@ -157,7 +157,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started with Textual Data</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="01_logistics.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_logistics.html">1. Section Overview</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="02_from-text-to-data.html">3. From Text to Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_cleaning-and-counting.html">4. Cleaning and Counting</a></li>
@@ -168,7 +168,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing with Python</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="50_logistics.html">9. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="50_logistics.html">9. Section Overview</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="51_text-annotation-with-spacy.html">11. Text Annotation with spaCy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="52_classification-and-feature-engineering.html">12. Classification and Feature Engineering</a></li>
@@ -387,60 +387,56 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="overview">
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h1>
-<p>YOUR DESCRIPTION</p>
+<p>This week-long workshop series covers the basics of text mining and natural
+language processing (NLP) with Python. We will focus primarily on unstructured
+text data, discussing how to format and clean text to enable the discovering of
+significant patterns in collections of documents. Sessions will introduce
+participants to core terminology in text mining/NLP and will walk through
+methods that range from tokenization and dependency parsing to text
+classification, topic modeling, and word embeddings. Basic familiarity with
+Python is required. We welcome students, postdocs, faculty, and staff from a
+variety of research domains, ranging from health informatics to the humanities.</p>
+<p>Note: this series concludes with a special session on large language models,
+“The Basics of Large Language Models.”</p>
 <section id="learning-goals">
 <h2>Learning Goals<a class="headerlink" href="#learning-goals" title="Permalink to this headline">#</a></h2>
-<p>After completing this workshop, learners should be able to:</p>
-<p>LEARNING GOALS</p>
+<p>By the end of this series, you will be able to:</p>
+<ul class="simple">
+<li><p>Clean and structure textual data for analysis Recognize and explain how these
+cleaning processes impact research findings</p></li>
+<li><p>Explain key concepts and terminology in text mining/NLP, including
+tokenization, dependency parsing, word embedding</p></li>
+<li><p>Use special data structures such as document-term matrices to efficiently
+analyze multiple texts</p></li>
+<li><p>Use statistical measures (pointwise mutual information, tf-idf) to identify
+significant patterns in text</p></li>
+<li><p>Classify texts on the basis of their features</p></li>
+<li><p>Produce statistical models of topics from/about a collection of texts</p></li>
+<li><p>Produce models of word meanings from a corpus</p></li>
+</ul>
 </section>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">#</a></h2>
-<!--
-No prior programming experience is necessary. Learners should commit to
-attending all four sessions of this series.
-
-These workshops are not an introduction to Python. Learners must have taken
-[DataLab’s Python Basics workshop series][basics] or have equivalent prior
-experience using Python.
-
-[basics]: https://ucdavisdatalab.github.io/workshop_python_basics/
-
-These workshops are not an introduction to R. Learners must have taken
-[DataLab’s R Basics workshop series][basics] or have equivalent prior
-experience using R.
-
-[basics]: https://ucdavisdatalab.github.io/workshop_r_basics/
--->
-<p>YOUR PREREQUISITES</p>
+<p>These workshops are not an introduction to Python. Learners must have taken
+<a class="reference external" href="https://ucdavisdatalab.github.io/workshop_python_basics/">DataLab’s Python Basics workshop series</a> or have equivalent prior
+experience using Python.</p>
 </section>
 <section id="computing-requirements">
 <h2>Computing Requirements<a class="headerlink" href="#computing-requirements" title="Permalink to this headline">#</a></h2>
-<!--
-Before the workshop, please make sure your computer has a working internet
-connection and the most recent versions of the following software:
-
-* [Anaconda Distribution][anaconda], which by default includes:
-  + [Python 3][python]
-  + [conda][]
-  + [JupyterLab][jupyter]
-
-* [R][r]
-
-You can find step-by-step installation instructions in [DataLab's Python
-Install Guide][install-guide]. If you need additional help, come chat with us
-in [DataLab's Office Hours][oh].
-
-[anaconda]: https://www.anaconda.com/
-[python]: https://www.python.org/
-[conda]: https://docs.conda.io/en/latest/
-[jupyter]: https://jupyter.org/
-
-[r]: https://www.r-project.org/
-[rstudio]: https://posit.co/products/open-source/rstudio/
-
-[install-guide]: https://ucdavisdatalab.github.io/install_guides/python-and-python-tools.html#python-and-python-tools
-[oh]: https://datalab.ucdavis.edu/office-hours/
--->
+<p>Before the workshop, please make sure your computer has a working internet
+connection and the most recent versions of the following software:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.anaconda.com/">Anaconda Distribution</a>, which by default includes:</p>
+<ul>
+<li><p><a class="reference external" href="https://www.python.org/">Python 3</a></p></li>
+<li><p><a class="reference external" href="https://docs.conda.io/en/latest/">conda</a></p></li>
+<li><p><a class="reference external" href="https://jupyter.org/">JupyterLab</a></p></li>
+</ul>
+</li>
+</ul>
+<p>You can find step-by-step installation instructions in <a class="reference external" href="https://ucdavisdatalab.github.io/install_guides/python-and-python-tools.html#python-and-python-tools">DataLab’s Python
+Install Guide</a>. If you need additional help, come chat with us
+in <a class="reference external" href="https://datalab.ucdavis.edu/office-hours/">DataLab’s Office Hours</a>.</p>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -486,7 +482,7 @@ in [DataLab's Office Hours][oh].
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Overview</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Section Overview</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
