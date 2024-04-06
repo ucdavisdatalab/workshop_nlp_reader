@@ -1,10 +1,13 @@
-# Workshop: Text Analysis and Natural Language Processing for Data Science
+# Workshop: Natural Language Processing for Data Science
 
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 
 _[UC Davis DataLab](https://datalab.ucdavis.edu/)_  
 Spring 2024
-_Instructor: Tyler Shoemaker <<tshoemaker@ucdavis.edu>>, Carl Stahmer <<cstahmer@ucdavis.edu>>_
+
+_Instructor: Tyler Shoemaker <<tshoemaker@ucdavis.edu>>, 
+Carl Stahmer <<cstahmer@ucdavis.edu>>_
+
 _Maintainer: Tyler Shoemaker <<tshoemaker@ucdavis.edu>>_  
 
 * [Reader](https://ucdavisdatalab.github.io/workshop_nlp_reader/)
