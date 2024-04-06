@@ -1,5 +1,5 @@
-Overview
-======== 
+Section Overview
+================ 
 
 In this three-part workshop series you will learn the basics of text mining
 with Python. We will focus primarily on unstructured text data, discussing how

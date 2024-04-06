@@ -1,5 +1,5 @@
-Overview
-========
+Section Overview
+================
 
 This three-part workshop series introduces participants to natural language
 processing (NLP) with Python. It builds on Getting Started with Textual Data by
