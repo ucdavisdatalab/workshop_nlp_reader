@@ -19,6 +19,7 @@ parts:
       - file: chapters/52_classification-and-feature-engineering
       - file: chapters/53_word-embeddings
       - file: chapters/95_assessment
-  - caption: "Large Language Models: The Basics"
-  - numbered: true
->>>>>>> fa0e486 (Initial upload of past reader content)
+  - caption: The Basics of Large Language Models
+    numbered: true
+    chapters:
+      - file: chapters/80_logistics

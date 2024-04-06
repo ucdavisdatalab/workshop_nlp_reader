@@ -79,7 +79,7 @@ original text to show why you might (or might not) implement them.
 To make these comparisons, load in _Frankenstein_.
 
 ```{code-cell}
-with open("data/session_one/shelley_frankenstein.txt", 'r') as fin:
+with open("data/section_one/s1/shelley_frankenstein.txt", 'r') as fin:
     frankenstein = fin.read()
 ```
 

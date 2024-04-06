@@ -51,7 +51,7 @@ Plain Text
 To open a text file, we'll use `with...open`.
 
 ```{code-cell}
-with open("data/session_one/shelley_frankenstein.txt", 'r') as fin:
+with open("data/section_one/s1/shelley_frankenstein.txt", 'r') as fin:
     frankenstein = fin.read()
 ```
 

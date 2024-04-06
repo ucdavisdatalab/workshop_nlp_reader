@@ -146,7 +146,7 @@ import seaborn as sns
 We also initialize an input directory and load a file manifest.
 
 ```{code-cell}
-indir = Path("data/session_three")
+indir = Path("data/section_two/s3")
 
 manifest = pd.read_csv(indir.joinpath("manifest.csv"), index_col = 0)
 manifest.info()

@@ -69,7 +69,7 @@ import seaborn as sns
 Initialize a path to the data directory as well.
 
 ```{code-cell}
-indir = Path("data/session_two")
+indir = Path("data/section_one/s2")
 ```
 
 ### File manifest

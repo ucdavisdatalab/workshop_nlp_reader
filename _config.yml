@@ -31,4 +31,4 @@ sphinx:
   config:
     html_show_copyright: false
     language: en-us
-    html_extra_path: ['data/session_three/output/topic_model_plot.html']
+    html_extra_path: ['data/section_one/s3/output/topic_model_plot.html']

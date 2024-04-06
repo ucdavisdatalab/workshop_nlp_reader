@@ -79,7 +79,7 @@ sns.set_palette("colorblind")
 We'll also set up an input directory and our model.
 
 ```{code-cell}
-indir = Path("data/session_two")
+indir = Path("data/section_two/s2")
 nlp = spacy.load('en_core_web_md')
 ```
 

@@ -139,7 +139,7 @@ import pyLDAvis
 Our input directory:
 
 ```{code-cell}
-indir = Path("data/session_three")
+indir = Path("data/section_one/s3")
 ```
 
 And our manifest:

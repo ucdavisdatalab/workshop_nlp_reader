@@ -134,7 +134,7 @@ import spacy
 And here's the data directory we'll be working from:
 
 ```{code-cell}
-indir = Path("data/session_one")
+indir = Path("data/section_two/s1")
 ```
 
 Finally, we initialize the model.

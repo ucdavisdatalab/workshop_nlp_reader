@@ -60,7 +60,7 @@ import seaborn as sns
 And we will load our data as well.
 
 ```{code-cell}
-dtm = pd.read_csv("data/session_two/output/tfidf_scores.csv", index_col = 0)
+dtm = pd.read_csv("data/section_one/s2/output/tfidf_scores.csv", index_col = 0)
 ```
 
 The Vector Space Concept
