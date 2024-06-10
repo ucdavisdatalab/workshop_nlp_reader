@@ -19,8 +19,8 @@ Learning Goals
 --------------
 
 By the end of this series, you will be able to:
-+ Clean and structure textual data for analysis Recognize and explain how these
-  cleaning processes impact research findings
++ Clean and structure textual data for analysis
++ Recognize and explain how these cleaning processes impact research findings
 + Explain key concepts and terminology in text mining/NLP, including
   tokenization, dependency parsing, word embedding
 + Use special data structures such as document-term matrices to efficiently

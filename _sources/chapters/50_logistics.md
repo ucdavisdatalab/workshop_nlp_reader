@@ -62,7 +62,7 @@ your environment for the course:
    sign-in to your Google Drive
 5. Upload the `nlp_workshop_data` directory into the root of your Google Drive
 
-[zipped]: https://datalab.ucdavis.edu/nlp_workshop_data/nlp_workshop_data.zip
+[zipped]: https://datalab.ucdavis.edu/nlp_workshop_data/
 [site]: https://colab.research.google.com
 
 Once you have completed the above steps, you will have your basic environment
