@@ -82,9 +82,9 @@ Now, you need to connect your Google Drive to your Colab environment. To do
 this, run the following code in the code cell at appears at the top of your
 blank notebook:
 
-```
+```py
 from google.colab import drive
-drive.mount('/gdrive')
+drive.mount('/content/drive')
 ```
 
 Your environment should be ready to go!
