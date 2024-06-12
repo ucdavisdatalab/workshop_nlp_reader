@@ -1,0 +1,88 @@
+# setup environment
+from pathlib import Path
+import numpy as np
+import pandas as pd
+import tomotopy as tp
+from tomotopy.utils import Corpus
+from tomotopy.coherence import Coherence
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pyLDAvis
+
+# set path variable EDIT to YOUR DRIVE CONFIGURATION
+indir = Path("/Users/carlstahmer/Workspaces/python/nlp_workshop/data/section_one/s3")
+
+# read the manifest
+manifest = pd.read_csv(indir.joinpath("manifest.csv"), index_col = 0)
+manifest.loc[:, 'year'] = pd.to_datetime(manifest['pub_date']).dt.year
+manifest.info()
+
+# create the corpus object
+corpus = Corpus()
+for fname in manifest['file_name']:
+    path = indir.joinpath(f"input/{fname}")
+    with path.open('r') as fin:
+        doc = fin.read()
+        corpus.add_doc(doc.split())
+
+# Set a randome seed and interations number value
+seed = 357
+iters = 1000
+
+# helper function to show top words
+def top_words(model, k):
+    """Print the top words for topic k in a model."""
+    top_words = model.get_topic_words(topic_id = k, top_n = 5)
+    top_words = [f"{word} ({score:0.4f}%)" for (word, score) in top_words]
+    print(f"Topic {k}: {', '.join(top_words)}")
+
+# helper function to format list of top words
+def format_top_words(tm, k, top_n = 5):
+    """Get a formatted string of the top words for a topic."""
+    words = tm.get_topic_words(k, top_n = top_n)
+    
+    return f"Topic #{k}: {', '.join(word for (word, _) in words)}"
+
+# helper function to calculate topic distributions
+def doc_topic_dist(model, idx):
+    """Print the topic distribution for a document."""
+    topics = model.docs[idx].get_topic_dist()
+    for idx, prob in enumerate(topics):
+        print(f"+ Topic #{idx}: {prob:0.2f}%")
+
+# helper function to plot topic proportions
+def plot_topic_proportions(tm, name = '', top_n = 5):
+    """Plot the topic proportions for a model."""
+    dists = tm.get_count_by_topics() / tm.num_words
+    words = [format_top_words(tm, k, top_n) for k in range(tm.k)]
+    data = pd.DataFrame(zip(words, dists), columns = ('word', 'dist'))
+    data.sort_values('dist', ascending = False, inplace = True)
+
+    fig, ax = plt.subplots(figsize = (15, 15))
+    g = sns.barplot(x = 'dist', y = 'word', color = 'blue', data = data)
+    g.set(title = f"Topic proportions for {name}", xlabel = "Proportion");
+
+# helper function to get theta (doc/topics distributions)
+def get_theta(model, labels):
+    """Get the theta matrix from a model."""
+    theta = np.stack([doc.get_topic_dist() for doc in model.docs])
+    theta = pd.DataFrame(theta, index = labels)
+
+    return theta
+
+# helper function to get files in manfiest that are highly
+# associated with a given topic
+def doc_topic_associations(theta, manifest, k):
+    """Find highly associated documents from a manifest with a topic."""
+    topk = theta.loc[theta.idxmax(axis = 1) == k, k]
+    associated = manifest[manifest['title'].isin(topk.index)].copy()
+    associated.loc[:, f'{k}_score'] = topk.values
+
+    return associated[['author', 'title', 'genre', f'{k}_score']]
+
+# train an over-tuned model (k derived from previous coherence testing)
+optimized = tp.LDAModel(
+    k = 30, alpha = 5, eta = 2, corpus = corpus, seed = seed
+)
+optimized.train(iter = iters)
+optimized_coherence = Coherence(optimized, coherence = 'c_v')
