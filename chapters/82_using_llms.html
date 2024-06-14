@@ -1,0 +1,1825 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en-us" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>17. Working with Large Language Models &#8212; Natural Language Processing for Data Science</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/82_using_llms';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="16. Large Language Models: An Introduction" href="81_llms.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en-us"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/datalab-logo-full-color-rgb.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/datalab-logo-full-color-rgb.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started with Textual Data</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_logistics.html">1. Section Overview</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="02_from-text-to-data.html">3. From Text to Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_cleaning-and-counting.html">4. Cleaning and Counting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_corpus-analytics.html">5. Corpus Analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_clustering-and-classification.html">6. Clustering and Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_topic-modeling.html">7. Topic Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="90_assessment.html">8. Assessment</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing with Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="50_logistics.html">9. Section Overview</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="51_text-annotation-with-spacy.html">11. Text Annotation with spaCy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="52_classification-and-feature-engineering.html">12. Classification and Feature Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="53_word-embeddings.html">13. Word Embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="95_assessment.html">14. Assessment</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Basics of Large Language Models</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="80_logistics.html">15. Section Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="81_llms.html">16. Large Language Models: An Introduction</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">17. Working with Large Language Models</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ucdavisdatalab/workshop_nlp_reader" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ucdavisdatalab/workshop_nlp_reader/issues/new?title=Issue%20on%20page%20%2Fchapters/82_using_llms.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/82_using_llms.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Working with Large Language Models</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preliminaries">17.1. Preliminaries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tuning-a-bert-model">17.2. Fine-Tuning a BERT Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-our-labels">17.2.1. Defining our labels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">17.2.2. Data preparation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logging">17.2.3. Logging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-hyperparameters">17.2.4. Training hyperparameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-training">17.2.5. Model training</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-evaluation">17.3. Model Evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-pipeline">17.3.1. Using a pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-accuracy">17.3.2. Classification accuracy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generative-models">17.4. Generative Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#text-generation">17.4.1. Text Generation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-strategies">17.4.2. Sampling strategies</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompting">17.5. Prompting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-chat">17.5.1. For chat</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#template-prompting">17.5.2. Template prompting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-augmented-generation">17.5.3. Retrieval-augmented generation</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="working-with-large-language-models">
+<h1><span class="section-number">17. </span>Working with Large Language Models<a class="headerlink" href="#working-with-large-language-models" title="Permalink to this headline">#</a></h1>
+<p>This chapter demonstrates how to work with large language models (LLMs). We
+will fine-tune a model (BERT) for a classification task and discuss the
+numerous hyperparameters available to you. Then, we will work with a generative
+model (GPT-2) to discuss sampling strategies and prompting.</p>
+<div class="admonition-learning-objectives admonition">
+<p class="admonition-title">Learning objectives</p>
+<p>By the end of this chapter, you should be able to:</p>
+<ul class="simple">
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">transformers</span></code> interface for model training and deployment</p></li>
+<li><p>Explain several of the hyperparameters that go into model training</p></li>
+<li><p>Fine-tune a LLM for a classification task</p></li>
+<li><p>Assess the performance of a fine-tuned model</p></li>
+<li><p>Explain different sampling strategies for text generation</p></li>
+<li><p>Learn the basics of prompting and prompt engineering</p></li>
+</ul>
+</div>
+<section id="preliminaries">
+<h2><span class="section-number">17.1. </span>Preliminaries<a class="headerlink" href="#preliminaries" title="Permalink to this headline">#</a></h2>
+<p>Here are the libraries you will need:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AutoTokenizer</span><span class="p">,</span>
+    <span class="n">AutoModelForSequenceClassification</span><span class="p">,</span>
+    <span class="n">AutoModelForCausalLM</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DataCollatorWithPadding</span><span class="p">,</span>
+    <span class="n">TrainingArguments</span><span class="p">,</span>
+    <span class="n">Trainer</span><span class="p">,</span>
+    <span class="n">EarlyStoppingCallback</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">GenerationConfig</span>
+<span class="kn">import</span> <span class="nn">evaluate</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="fine-tuning-a-bert-model">
+<h2><span class="section-number">17.2. </span>Fine-Tuning a BERT Model<a class="headerlink" href="#fine-tuning-a-bert-model" title="Permalink to this headline">#</a></h2>
+<p>Our first example will involve fine-tuning an encoder model, BERT
+(Bidirectional Encoder Representations from Transformers). We will work with a
+dataset of book blurbs from the U. Hamburg Language Technology Group’s <a class="reference external" href="https://www.inf.uni-hamburg.de/en/inst/ab/lt/resources/data/blurb-genre-collection.html">Blurb
+Genre Collection</a>. These blurbs have genre tags, and we will use tags
+to adapt BERT’s weights to a classification task that determines the genre of a
+book based on the contents of a blurb.</p>
+<section id="defining-our-labels">
+<h3><span class="section-number">17.2.1. </span>Defining our labels<a class="headerlink" href="#defining-our-labels" title="Permalink to this headline">#</a></h3>
+<p>Load the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blurbs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s2">&quot;data/bert_blurb_classifier/blurbs.parquet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Currently the labels for this data are string representations of genres.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blurbs</span><span class="p">[</span><span class="s2">&quot;d1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Mystery &amp; Suspense&#39;,
+ &#39;Graphic Novels &amp; Manga&#39;,
+ &#39;Romance&#39;,
+ &#39;Religion &amp; Philosophy&#39;,
+ &#39;Graphic Novels &amp; Manga&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We need to convert those strings into unique identifiers. In most cases, the
+unique identifier is just an arbitrary number; we create them below by taking
+the index position of a label in the <code class="docutils literal notranslate"><span class="pre">.unique()</span></code> output. Under the hood, the
+model will use those numbers, but if we associate them in a dictionary with the
+original strings, we can also have it display the original strings.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">enumerated</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">blurbs</span><span class="p">[</span><span class="s2">&quot;d1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()))</span>
+<span class="n">id2label</span> <span class="o">=</span> <span class="p">{</span><span class="n">idx</span><span class="p">:</span> <span class="n">genre</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">genre</span> <span class="ow">in</span> <span class="n">enumerated</span><span class="p">}</span>
+<span class="n">label2id</span> <span class="o">=</span> <span class="p">{</span><span class="n">genre</span><span class="p">:</span> <span class="n">idx</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">genre</span> <span class="ow">in</span> <span class="n">enumerated</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">.replace()</span></code> to remap the labels in the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blurbs</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">blurbs</span><span class="p">[</span><span class="s2">&quot;d1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">label2id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>How many unique labels are there?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_labels</span> <span class="o">=</span> <span class="n">blurbs</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">num_labels</span><span class="p">,</span> <span class="s2">&quot;unique labels&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10 unique labels
+</pre></div>
+</div>
+</div>
+</div>
+<p>What is the distribution of labels like?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blurbs</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>label
+0    1459
+1    1459
+2    1459
+3    1459
+4    1459
+5    1459
+6    1459
+7    1459
+8    1459
+9    1459
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>With model-ready labels made, we create a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>. These objects work
+directly with the Hugging Face training pipeline to handle batch processing and
+other such optimizations in an automatic fashion. They also allow you to
+interface directly with Hugging Face’s cloud-hosted data, though we will only
+use local data for this fine-tuning run.</p>
+<p>We only need two columns from our original DataFrame: the text and its label.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">blurbs</span><span class="p">[[</span><span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">]])</span>
+<span class="n">dataset</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset({
+    features: [&#39;text&#39;, &#39;label&#39;],
+    num_rows: 14590
+})
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we load a model to fine-tune. This works just like we did earlier,
+though the <code class="docutils literal notranslate"><span class="pre">AutoModelForSequenceClassification</span></code> object expects to have an
+argument that specifies how many labels you want to train your model to
+recognize.</p>
+<div class="cell tag_remove-stderr docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;bert-base-uncased&quot;</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">model_name</span><span class="p">,</span> <span class="n">num_labels</span> <span class="o">=</span> <span class="n">num_labels</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+</div>
+</div>
+<p>Don’t forget to associate the label mappings!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">id2label</span> <span class="o">=</span> <span class="n">id2label</span>
+<span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">label2id</span> <span class="o">=</span> <span class="n">label2id</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-preparation">
+<h3><span class="section-number">17.2.2. </span>Data preparation<a class="headerlink" href="#data-preparation" title="Permalink to this headline">#</a></h3>
+<p>With label mappings made, we turn to the actual texts. Below, we define a
+simple tokenization function. This just wraps the usual functionality that a
+tokenizer would do, but keeping that functionality stored in a custom wrapper
+like this allows us to cast, or <strong>map</strong>, that function across the entire
+Dataset all at once.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="n">examples</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tokenize strings.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    examples : dict</span>
+<span class="sd">        Batch of texts</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tokenized : dict</span>
+<span class="sd">        Tokenized texts</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tokenized</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span>
+        <span class="n">examples</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">],</span>
+        <span class="n">return_tensors</span> <span class="o">=</span> <span class="s2">&quot;pt&quot;</span><span class="p">,</span>
+        <span class="n">truncation</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">padding</span> <span class="o">=</span> <span class="s2">&quot;max_length&quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tokenized</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we split the data into separate train/test datasets…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">split</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">()</span>
+<span class="n">split</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DatasetDict({
+    train: Dataset({
+        features: [&#39;text&#39;, &#39;label&#39;],
+        num_rows: 10942
+    })
+    test: Dataset({
+        features: [&#39;text&#39;, &#39;label&#39;],
+        num_rows: 3648
+    })
+})
+</pre></div>
+</div>
+</div>
+</div>
+<p>…and tokenize both with the function we’ve written. Note the <code class="docutils literal notranslate"><span class="pre">batched</span></code>
+argument. It tells the Dataset to send batches of texts to the tokenizer at
+once. That will greatly speed up the tokenization process.</p>
+<div class="cell tag_remove-stderr docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainset</span> <span class="o">=</span> <span class="n">split</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">tokenize</span><span class="p">,</span> <span class="n">batched</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">testset</span> <span class="o">=</span> <span class="n">split</span><span class="p">[</span><span class="s2">&quot;test&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">tokenize</span><span class="p">,</span> <span class="n">batched</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+</div>
+</div>
+<p>Tokenizing texts like this creates the usual output of token ids, attention
+masks, and so on:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainset</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset({
+    features: [&#39;text&#39;, &#39;label&#39;, &#39;input_ids&#39;, &#39;token_type_ids&#39;, &#39;attention_mask&#39;],
+    num_rows: 10942
+})
+</pre></div>
+</div>
+</div>
+</div>
+<p>Recall from the last chapter that models require batches to have the same
+number of input features. If texts are shorter than the total feature size, we
+pad them and then tell the model to ignore that padding during processing. But
+there may be cases where an entire batch of texts is substantially padded
+because all those texts are short. It would be a waste of time and computing
+resources to process them with all that padding.</p>
+<p>This is where the <code class="docutils literal notranslate"><span class="pre">DataCollatorWithPadding</span></code> comes in. During training it will
+dynamically pad batches to the maximum feature size for a given batch. This
+improves the efficiency of the training process.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_collator</span> <span class="o">=</span> <span class="n">DataCollatorWithPadding</span><span class="p">(</span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="logging">
+<h3><span class="section-number">17.2.3. </span>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">#</a></h3>
+<p>With our data prepared, we move on to setting up the training process. First:
+logging training progress. It’s helpful to monitor how a model is doing while
+it trains. The function below computes metrics when the model pauses to perform
+an evaluation. During evaluation, the model trainer will call this function,
+calculate the scores, and display the results.</p>
+<p>The scores are simple ones: accuracy and F1. To calculate them, we use the
+<code class="docutils literal notranslate"><span class="pre">evaluate</span></code> package, which is part of the Hugging Face ecosystem.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accuracy_metric</span> <span class="o">=</span> <span class="n">evaluate</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;accuracy&quot;</span><span class="p">)</span>
+<span class="n">f1_metric</span> <span class="o">=</span> <span class="n">evaluate</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">compute_metrics</span><span class="p">(</span><span class="n">evaluations</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute metrics for a set of predictions.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    evaluations : tuple</span>
+<span class="sd">        Model logits/label for each text and texts&#39; true labels</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    scores : dict</span>
+<span class="sd">        The metric scores</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Split the model logits from the true labels</span>
+    <span class="n">logits</span><span class="p">,</span> <span class="n">references</span> <span class="o">=</span> <span class="n">evaluations</span>
+
+    <span class="c1"># Find the model prediction with the maximum value</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Calculate the scores</span>
+    <span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_metric</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span>
+        <span class="n">predictions</span> <span class="o">=</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">references</span> <span class="o">=</span> <span class="n">references</span>
+    <span class="p">)</span>
+    <span class="n">f1</span> <span class="o">=</span> <span class="n">f1_metric</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span>
+        <span class="n">predictions</span> <span class="o">=</span> <span class="n">predictions</span><span class="p">,</span>
+        <span class="n">references</span> <span class="o">=</span> <span class="n">references</span><span class="p">,</span>
+        <span class="n">average</span> <span class="o">=</span> <span class="s2">&quot;weighted&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Wrap up the scores and return them for display during logging</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="n">accuracy</span><span class="p">[</span><span class="s2">&quot;accuracy&quot;</span><span class="p">],</span> <span class="s2">&quot;f1&quot;</span><span class="p">:</span> <span class="n">f1</span><span class="p">[</span><span class="s2">&quot;f1&quot;</span><span class="p">]}</span>
+
+    <span class="k">return</span> <span class="n">scores</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="training-hyperparameters">
+<h3><span class="section-number">17.2.4. </span>Training hyperparameters<a class="headerlink" href="#training-hyperparameters" title="Permalink to this headline">#</a></h3>
+<p>There are a large number of hyperparameters to set when training a model. Some
+of them are very general, some extremely granular. This section walks through
+some of the most common ones you will find yourself adjusting.</p>
+<p>First: epochs. The number of <strong>epochs</strong> refers to the number of times a model
+passes over the entire dataset. Big models train for dozens, even hundreds of
+epochs, but ours is small enough that we only need a few</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_train_epochs</span> <span class="o">=</span> <span class="mi">15</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Training is broken up into individual <strong>steps</strong>. A step refers to a single
+update of the model’s parameters, and each step processes one batch of data.
+<strong>Batch size</strong> determines how many samples a model processes in each step.</p>
+<p>Batch size can greatly influence training performance. Larger batch sizes tend
+to produce models that struggle to generalize (see <a class="reference external" href="https://stats.stackexchange.com/questions/164876/what-is-the-trade-off-between-batch-size-and-number-of-iterations-to-train-a-neu">here</a> for a
+discussion of why). You would think, then, that you would want to have very
+small batches. But that would be an enormous trade-off in resources, because
+small batches take longer to train. So, setting the batch size ends up being a
+matter of balancing these two needs.</p>
+<p>A good starting point for batch sizes is 32-64. Note that models have separate
+size specifications for the training batches and the evaluation batches. It’s a
+good idea to keep the latter set to a smaller size, for the very reason about
+measuring model generalization above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">per_device_train_batch_size</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">per_device_eval_batch_size</span> <span class="o">=</span> <span class="mi">8</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Learning rate</strong> controls how quickly your model fits to the data. One of the
+most important hyperparameters, it is the amount by which the model updates its
+weights at each step. Learning rates are often values between 0.0 and 1.0.
+Large learning rates will speed up training but lead to sub-optimally fitted
+models; smaller ones require more steps to fit the model but tend to produce a
+better fit (though there are cases where they can force models to become stuck
+in local minima).</p>
+<p>Hugging Face’s trainer defaults to <code class="docutils literal notranslate"><span class="pre">5e-5</span></code> (or 0.00005). That’s a good starting
+point. A good lower bound is <code class="docutils literal notranslate"><span class="pre">2e-5</span></code>; we will use <code class="docutils literal notranslate"><span class="pre">3e-5</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">3e-5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Early in training, models can make fairly substantial errors. Adjusting for
+those errors by updating parameters is the whole point of training, but making
+adjustments too quickly could lead to a sub-optimally fitted model. <strong>Warm up
+steps</strong> help stabilize a model’s final parameters by gradually increasing the
+learning rate over a set number of steps.</p>
+<p>It’s typically a good idea to use 10% of your total training steps as the step
+size for warm up.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">warmup_steps</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">trainset</span><span class="p">)</span> <span class="o">/</span> <span class="n">per_device_train_batch_size</span><span class="p">)</span> <span class="o">*</span> <span class="n">num_train_epochs</span>
+<span class="n">warmup_steps</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">warmup_steps</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of warm up steps:&quot;</span><span class="p">,</span> <span class="n">warmup_steps</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of warm up steps: 513
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Weight decay</strong> helps prevent overfitted models by keeping model weights from
+growing too large. It’s a penalty value added to the loss function. A good
+range for this value is <code class="docutils literal notranslate"><span class="pre">1e-5</span></code> - <code class="docutils literal notranslate"><span class="pre">1e-2</span></code>; use a higher value for smaller
+datasets and vice versa.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weight_decay</span> <span class="o">=</span> <span class="mf">1e-2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With our primary hyperparameters set, we specify them using a
+<code class="docutils literal notranslate"><span class="pre">TrainingArguments</span></code> object. There are only a few other things to note about
+initializing our <code class="docutils literal notranslate"><span class="pre">TrainingArgumnts</span></code>. Besides specifying an output directory and
+logging steps, we specify when the model should evaluate itself (after every
+epoch) and provide a criterion (loss) for selecting the best performing model
+at the end of training.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">training_args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
+    <span class="n">output_dir</span> <span class="o">=</span> <span class="s2">&quot;data/bert_blurb_classifier&quot;</span><span class="p">,</span>
+    <span class="n">num_train_epochs</span> <span class="o">=</span> <span class="n">num_train_epochs</span><span class="p">,</span>
+    <span class="n">per_device_train_batch_size</span> <span class="o">=</span> <span class="n">per_device_train_batch_size</span><span class="p">,</span>
+    <span class="n">per_device_eval_batch_size</span> <span class="o">=</span> <span class="n">per_device_eval_batch_size</span><span class="p">,</span>
+    <span class="n">learning_rate</span> <span class="o">=</span> <span class="n">learning_rate</span><span class="p">,</span>
+    <span class="n">warmup_steps</span> <span class="o">=</span> <span class="n">warmup_steps</span><span class="p">,</span>
+    <span class="n">weight_decay</span> <span class="o">=</span> <span class="n">weight_decay</span><span class="p">,</span>
+    <span class="n">logging_steps</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="n">evaluation_strategy</span> <span class="o">=</span> <span class="s2">&quot;epoch&quot;</span><span class="p">,</span>
+    <span class="n">save_strategy</span> <span class="o">=</span> <span class="s2">&quot;epoch&quot;</span><span class="p">,</span>
+    <span class="n">load_best_model_at_end</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">metric_for_best_model</span> <span class="o">=</span> <span class="s2">&quot;loss&quot;</span><span class="p">,</span>
+    <span class="n">save_total_limit</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="n">push_to_hub</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="model-training">
+<h3><span class="section-number">17.2.5. </span>Model training<a class="headerlink" href="#model-training" title="Permalink to this headline">#</a></h3>
+<p>Once all the above details are set, we initialize a <code class="docutils literal notranslate"><span class="pre">Trainer</span></code> and supply it
+with everything we’ve created: the model and its tokenizer, the data collator,
+training arguments, training and testing data, and the function for computing
+metrics. The only thing we haven’t seen below is the <code class="docutils literal notranslate"><span class="pre">EarlyStoppingCallback</span></code>.
+This combats overfitting. When the model doesn’t improve after some number of
+epochs, we stop training.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="p">,</span>
+    <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">,</span>
+    <span class="n">data_collator</span> <span class="o">=</span> <span class="n">data_collator</span><span class="p">,</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">training_args</span><span class="p">,</span>
+    <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">trainset</span><span class="p">,</span>
+    <span class="n">eval_dataset</span> <span class="o">=</span> <span class="n">testset</span><span class="p">,</span>
+    <span class="n">compute_metrics</span> <span class="o">=</span> <span class="n">compute_metrics</span><span class="p">,</span>
+    <span class="n">callbacks</span> <span class="o">=</span> <span class="p">[</span><span class="n">EarlyStoppingCallback</span><span class="p">(</span><span class="n">early_stopping_patience</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Time to train!</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Calling this method would quick off the training process, and you would see
+logging information as it runs. But for reasons of time and computing
+resources, the underlying code of this chapter won’t run a fully training loop.
+Instead, it will load a separately trained model for evaluation.</p>
+<p>But before that, we show how to save the final model:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">trainer</span><span class="o">.</span><span class="n">save_model</span><span class="p">(</span><span class="s2">&quot;data/bert_blurb_classifier/final&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Saving the model will save all the pieces you need when using it later.</p>
+</section>
+</section>
+<section id="model-evaluation">
+<h2><span class="section-number">17.3. </span>Model Evaluation<a class="headerlink" href="#model-evaluation" title="Permalink to this headline">#</a></h2>
+<p>We will evaluate the model in two ways, first by looking at classification
+accuracy, then token influence. To do this, let’s re-load our model and
+tokenizer. This time we specify the path to our local model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fine_tuned</span> <span class="o">=</span> <span class="s2">&quot;data/bert_blurb_classifier/final&quot;</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">fine_tuned</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">fine_tuned</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="using-a-pipeline">
+<h3><span class="section-number">17.3.1. </span>Using a pipeline<a class="headerlink" href="#using-a-pipeline" title="Permalink to this headline">#</a></h3>
+<p>While we could separately tokenize texts and feed them through the model, a
+<code class="docutils literal notranslate"><span class="pre">pipeline</span></code> will take care of all this. All we need to do is specify what kind
+of task our model has been trained to do.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span>
+    <span class="s2">&quot;text-classification&quot;</span><span class="p">,</span> <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="p">,</span> <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">tokenizer</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Below, we put a single text through the pipeline. It will return the model’s
+prediction and a confidence score.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span> <span class="o">=</span> <span class="n">blurbs</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">result</span> <span class="p">,</span><span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What does the model think this text is?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model label: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% conf.)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model label: Graphic Novels &amp; Manga (0.98% conf.)
+</pre></div>
+</div>
+</div>
+</div>
+<p>What is the actual label?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Actual label:&quot;</span><span class="p">,</span> <span class="n">sample</span><span class="p">[</span><span class="s2">&quot;d1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Actual label: Graphic Novels &amp; Manga
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here are the top three labels for this text:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">top_k</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;label&#39;: &#39;Graphic Novels &amp; Manga&#39;, &#39;score&#39;: 0.975226640701294},
+ {&#39;label&#39;: &#39;Children’s Middle Grade Books&#39;, &#39;score&#39;: 0.018488185480237007},
+ {&#39;label&#39;: &#39;Arts &amp; Entertainment&#39;, &#39;score&#39;: 0.0010197815718129277}]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Set <code class="docutils literal notranslate"><span class="pre">top_k</span></code> to <code class="docutils literal notranslate"><span class="pre">None</span></code> to return all scores.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">top_k</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;label&#39;: &#39;Graphic Novels &amp; Manga&#39;, &#39;score&#39;: 0.975226640701294},
+ {&#39;label&#39;: &#39;Children’s Middle Grade Books&#39;, &#39;score&#39;: 0.018488185480237007},
+ {&#39;label&#39;: &#39;Arts &amp; Entertainment&#39;, &#39;score&#39;: 0.0010197815718129277},
+ {&#39;label&#39;: &#39;Mystery &amp; Suspense&#39;, &#39;score&#39;: 0.0009127939702011645},
+ {&#39;label&#39;: &#39;Romance&#39;, &#39;score&#39;: 0.0008446536958217621},
+ {&#39;label&#39;: &#39;Politics&#39;, &#39;score&#39;: 0.0008410519803874195},
+ {&#39;label&#39;: &#39;Cooking&#39;, &#39;score&#39;: 0.0008091518539004028},
+ {&#39;label&#39;: &#39;Religion &amp; Philosophy&#39;, &#39;score&#39;: 0.000769095669966191},
+ {&#39;label&#39;: &#39;Biography &amp; Memoir&#39;, &#39;score&#39;: 0.000678630662150681},
+ {&#39;label&#39;: &#39;Literary Fiction&#39;, &#39;score&#39;: 0.00041002340731211007}]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="classification-accuracy">
+<h3><span class="section-number">17.3.2. </span>Classification accuracy<a class="headerlink" href="#classification-accuracy" title="Permalink to this headline">#</a></h3>
+<p>Let’s look at a broader sample of texts and appraise the model’s performance.
+Below, we take 250 blurbs and send them through the pipeline. A more fastidious
+version of this entire training setup would have spliced off this set of blurbs
+before doing the train/test split. That would have kept the model from ever
+seeing them until the moment we appraise performance to render a completely
+unbiased view of model performance. But for the purposes of demonstration, it’s
+okay to sample from our data generally.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span> <span class="o">=</span> <span class="n">blurbs</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">250</span><span class="p">)</span>
+<span class="n">predicted</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">truncation</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we access the predicted labels and compare them against the true labels
+with <code class="docutils literal notranslate"><span class="pre">classification_report()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_true</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="s2">&quot;d1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="p">[</span><span class="n">prediction</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">prediction</span> <span class="ow">in</span> <span class="n">predicted</span><span class="p">]</span>
+<span class="n">report</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">zero_division</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">report</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                               precision    recall  f1-score   support
+
+         Arts &amp; Entertainment       0.90      1.00      0.95        19
+           Biography &amp; Memoir       0.87      0.80      0.83        25
+Children’s Middle Grade Books       0.90      0.95      0.93        20
+                      Cooking       1.00      1.00      1.00        26
+       Graphic Novels &amp; Manga       1.00      0.96      0.98        23
+             Literary Fiction       0.87      0.83      0.85        24
+           Mystery &amp; Suspense       0.96      0.92      0.94        24
+                     Politics       0.96      0.88      0.92        26
+        Religion &amp; Philosophy       0.91      1.00      0.95        29
+                      Romance       0.91      0.94      0.93        34
+
+                     accuracy                           0.93       250
+                    macro avg       0.93      0.93      0.93       250
+                 weighted avg       0.93      0.93      0.93       250
+</pre></div>
+</div>
+</div>
+</div>
+<p>Overall, these are pretty nice results. The F1 scores are fairly well balanced.
+Though it looks like the model struggles with classifying Biography &amp; Memoir
+and Literary Fiction. But other genres, like Cooking and Romance, are just
+fine. We can use a <strong>confusion matrix</strong> to see which of these genres the model
+confuses with others.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">confusion</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">confusion</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">confusion</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">label2id</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">index</span> <span class="o">=</span> <span class="n">label2id</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot the matrix as a heatmap:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">confusion</span><span class="p">,</span> <span class="n">annot</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;Blues&quot;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span> <span class="o">=</span> <span class="s2">&quot;True label&quot;</span><span class="p">,</span> <span class="n">xlabel</span> <span class="o">=</span> <span class="s2">&quot;Predicted label&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7e8a63dceacc5ff9fcee628ddc5ffd49e29f1aad01a16d1b876e089e45506352.png" src="../_images/7e8a63dceacc5ff9fcee628ddc5ffd49e29f1aad01a16d1b876e089e45506352.png" />
+</div>
+</div>
+<p>For this testing set, it looks like the model sometimes mis-classifies
+Biography &amp; Memoir as Religion &amp; Philosophy. Likewise, it sometimes assigns
+Politics to Biography &amp; Memoir. Finally, there appears to be a little
+confusion between Literary Fiction and Romance.</p>
+</section>
+</section>
+<section id="generative-models">
+<h2><span class="section-number">17.4. </span>Generative Models<a class="headerlink" href="#generative-models" title="Permalink to this headline">#</a></h2>
+<p>We turn now to natural language generation. Prior to the notoriety of ChatGPT,
+OpenAI released GPT-2, a <strong>decoder</strong> model (GPT stands for “generative
+pretrained Transformer”). This release was ultimately made widely available,
+meaning we can download the model ourselves.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">checkpoint</span> <span class="o">=</span> <span class="s2">&quot;gpt2&quot;</span>
+<span class="n">gpt_tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">)</span>
+<span class="n">gpt</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>GPT-2 didn’t have a padding token, but you can set one manually:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gpt_tokenizer</span><span class="o">.</span><span class="n">pad_token_id</span> <span class="o">=</span> <span class="mi">50256</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pad token:&quot;</span><span class="p">,</span> <span class="n">gpt_tokenizer</span><span class="o">.</span><span class="n">pad_token</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pad token: &lt;|endoftext|&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>This isn’t strictly necessary, but you’ll see a warning during generation if
+you don’t do this.</p>
+<section id="text-generation">
+<h3><span class="section-number">17.4.1. </span>Text Generation<a class="headerlink" href="#text-generation" title="Permalink to this headline">#</a></h3>
+<p>Generating text from embeddings requires most of the same workflow we’ve used
+so far. First, we tokenize:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;It was the best of times, it was the&quot;</span>
+<span class="n">tokenized</span> <span class="o">=</span> <span class="n">gpt_tokenizer</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">return_tensors</span> <span class="o">=</span> <span class="s2">&quot;pt&quot;</span><span class="p">,</span> <span class="n">truncation</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note however that we aren’t padding these tokens. Now, send to the model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generated</span> <span class="o">=</span> <span class="n">gpt</span><span class="p">(</span><span class="o">**</span><span class="n">tokenized</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It’s possible to get the embeddings from various layers of this model, just as
+we did with BERT, but the component of these outputs that is relevant for
+generation is stored in the <code class="docutils literal notranslate"><span class="pre">.logits</span></code> attribute. Logits are raw scores
+outputted by the final linear layer of the model. For every token in the input
+sequence, we get an <code class="docutils literal notranslate"><span class="pre">n_vocabulary</span></code>-length tensor of logits:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generated</span><span class="o">.</span><span class="n">logits</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([1, 10, 50257])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Take the last of these tensors to get the logits for the final token in the
+input sequence.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">last_token_logits</span> <span class="o">=</span> <span class="n">generated</span><span class="o">.</span><span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we apply <strong>softmax</strong> to the logits to convert them to probabilities. The
+equation for softmax is below. For a vector of logits <span class="math notranslate nohighlight">\(z_i\)</span> elements, the
+softmax function <span class="math notranslate nohighlight">\(\sigma(z)_i\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma(\mathbf{z})_i = \frac{e^{z_i}}{\sum_{j=1}^{n} e^{z_j}}
+\]</div>
+<p>The result is a non-negative vector of values that sums to 1. Here’s a toy
+example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+<span class="n">exponentiated</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">z</span><span class="p">]</span>
+<span class="n">summed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">exponentiated</span><span class="p">)</span>
+
+<span class="n">exponentiated</span> <span class="o">/</span> <span class="n">summed</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.57611688, 0.21194156, 0.21194156])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Again, this sums to 1:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">exponentiated</span> <span class="o">/</span> <span class="n">summed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>In practice, we use a PyTorch function to do these steps for us.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">probs</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">last_token_logits</span><span class="p">,</span> <span class="n">dim</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What is the most likely next token?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">next_token_id</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">probs</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<span class="n">next_token</span> <span class="o">=</span> <span class="n">gpt_tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">next_token_id</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Next predicted token:&quot;</span><span class="p">,</span> <span class="n">next_token</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Next predicted token:  worst
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use the model’s <code class="docutils literal notranslate"><span class="pre">.generate()</span></code> method to do all of this work:</p>
+<div class="cell tag_remove-stderr docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generated_token_ids</span> <span class="o">=</span> <span class="n">gpt</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="o">**</span><span class="n">tokenized</span><span class="p">,</span> <span class="n">max_new_tokens</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">generated</span> <span class="o">=</span> <span class="n">gpt_tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">generated_token_ids</span><span class="o">.</span><span class="n">squeeze</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Full sequence:&quot;</span><span class="p">,</span> <span class="n">generated</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Full sequence: It was the best of times, it was the worst of times.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Wrapping everything in a <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> makes generation even easier.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;text-generation&quot;</span><span class="p">,</span> <span class="n">model</span> <span class="o">=</span> <span class="n">gpt</span><span class="p">,</span> <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">gpt_tokenizer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generated</span> <span class="p">,</span><span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">max_new_tokens</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">generated</span><span class="p">[</span><span class="s2">&quot;generated_text&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>It was the best of times, it was the worst of times.&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Want multiple outputs? It’s a simple tweak.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generated</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">max_new_tokens</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">num_return_sequences</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">generated</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="s2">&quot;generated_text&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>It was the best of times, it was the best of seasons—
+It was the best of times, it was the worst of times.
+It was the best of times, it was the worst of times,
+It was the best of times, it was the better of times.
+It was the best of times, it was the best of times.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sampling-strategies">
+<h3><span class="section-number">17.4.2. </span>Sampling strategies<a class="headerlink" href="#sampling-strategies" title="Permalink to this headline">#</a></h3>
+<p>Note that we do not get the same output every time we generate a sequence. This
+is because the model samples from the probability distribution produced by the
+softmax operation. There are a number of ways to think about how to do this
+sampling, and how to control it.</p>
+<p><strong>Greedy sampling</strong> takes the most likely sequence every time. Setting
+<code class="docutils literal notranslate"><span class="pre">do_sample</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code> will enable you to generate sequences of this sort.
+These will be <strong>deterministic</strong> sequences: great for reliable output, bad for
+scenarios in which you want varied responses.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generator</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">max_new_tokens</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">do_sample</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;generated_text&#39;: &#39;It was the best of times, it was the worst of times.&#39;}]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Top-k</strong> sampling limits the sampling pool. Instead of sampling from all
+possible outputs, we consider only the top <code class="docutils literal notranslate"><span class="pre">k</span></code>-most probable tokens. This makes
+outputs more diverse than in greedy sampling—though you’d need to find some
+way to set
+<code class="docutils literal notranslate"><span class="pre">k</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generated</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span>
+    <span class="n">prompt</span><span class="p">,</span>
+    <span class="n">do_sample</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">max_new_tokens</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">top_k</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
+    <span class="n">num_return_sequences</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="p">)</span>
+<span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">generated</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="s2">&quot;generated_text&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>It was the best of times, it was the best of times,
+It was the best of times, it was the best of times and
+It was the best of times, it was the worst of times as
+It was the best of times, it was the best of times.&quot;
+It was the best of times, it was the best of times and
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to top-k sampling is <strong>top-p</strong>, or <strong>nucleus sampling</strong>. Instead of
+fixing the size of the sampling pool, this method considers the top tokens
+whose cumulative probability is at least <code class="docutils literal notranslate"><span class="pre">p</span></code>. You still have to set a value for
+<code class="docutils literal notranslate"><span class="pre">p</span></code>, but it’s more adaptive than the top-k logic.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generated</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span>
+    <span class="n">prompt</span><span class="p">,</span>
+    <span class="n">do_sample</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">max_new_tokens</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">top_p</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span>
+    <span class="n">num_return_sequences</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="p">)</span>
+<span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">generated</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="s2">&quot;generated_text&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>It was the best of times, it was the best of times,&quot;
+It was the best of times, it was the most wonderful of times
+It was the best of times, it was the best of days,
+It was the best of times, it was the best of times,
+It was the best of times, it was the worst, he said
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adjust the <strong>temperature</strong> parameter to control the randomness of predictions.
+The value you use for temperature is used to scale the logits before applying
+softmax. Lower temperatures (&lt;1) make model outputs more deterministic by
+sharpening the probability distribution, while higher temperatures (&gt;1) make
+model outputs more random by flattening the probability distribution.</p>
+<p>Here is low-temperature output:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generated</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span>
+    <span class="n">prompt</span><span class="p">,</span> 
+    <span class="n">do_sample</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">max_new_tokens</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">temperature</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">num_return_sequences</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="p">)</span>
+<span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">generated</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="s2">&quot;generated_text&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>It was the best of times, it was the best of times. I
+It was the best of times, it was the worst of times,&quot; he
+It was the best of times, it was the best of times, it
+It was the best of times, it was the best of times. I
+It was the best of times, it was the best of times. I
+</pre></div>
+</div>
+</div>
+</div>
+<p>And high-temperature output:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generated</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span>
+    <span class="n">prompt</span><span class="p">,</span>
+    <span class="n">do_sample</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">max_new_tokens</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">temperature</span> <span class="o">=</span> <span class="mf">50.0</span><span class="p">,</span>
+    <span class="n">num_return_sequences</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="p">)</span>
+<span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">generated</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="s2">&quot;generated_text&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>It was the best of times, it was the perfect perfect light.&quot; Then
+It was the best of times, it was the very lowest points on human
+It was the best of times, it was the worst for this band&#39;s
+It was the best of times, it was the biggest pain—maybe because
+It was the best of times, it was the only chance left to put
+</pre></div>
+</div>
+</div>
+</div>
+<p>Set temperature to 1 to use logits as they are.</p>
+<p>Finally, there is <strong>beam searching</strong>. A beam search involves tracking multiple
+possible generation sequences. Once the model generates them all, it selects
+the sequence that has the highest cumulative probabilities. Each of these
+sequences is known as a <strong>beam</strong>, and the number of them is the <strong>beam width</strong>.
+The advantage of beam searching is that the model can navigate the probability
+space to find full sequences that may be better overall choices for output than
+if it had to construct a single sequence on the fly. Its disadvantage: beam
+searches are expensive, computationally speaking.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generated</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span>
+    <span class="n">prompt</span><span class="p">,</span>
+    <span class="n">do_sample</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">max_new_tokens</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">num_beams</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="n">num_return_sequences</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="p">)</span>
+<span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">generated</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="s2">&quot;generated_text&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>It was the best of times, it was the worst of times.&quot;
+
+It was the best of times, it was the best of times.&quot;
+
+It was the best of times, it was the worst of times, and
+It was the best of times, it was the worst of times, but
+It was the best of times, it was the worst of times, it
+</pre></div>
+</div>
+</div>
+</div>
+<p>Mixing these strategies together usually works best. Use a <code class="docutils literal notranslate"><span class="pre">GenerationConfig</span></code>
+to set up your pipeline. This will accept a number of different parameters,
+including an <strong>early stopping</strong> value, which will cut generation off in
+beam-based searches once <code class="docutils literal notranslate"><span class="pre">num_beams</span></code> candidates have completed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="o">=</span> <span class="n">GenerationConfig</span><span class="p">(</span>
+    <span class="n">max_new_tokens</span> <span class="o">=</span> <span class="mi">25</span><span class="p">,</span>
+    <span class="n">do_sample</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
+    <span class="n">temperature</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span>
+    <span class="n">top_p</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> 
+    <span class="n">num_return_sequences</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span>
+    <span class="s2">&quot;text-generation&quot;</span><span class="p">,</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">gpt</span><span class="p">,</span>
+    <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">gpt_tokenizer</span><span class="p">,</span>
+    <span class="n">generation_config</span> <span class="o">=</span> <span class="n">config</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>There are several other parameters you can set with <code class="docutils literal notranslate"><span class="pre">GenerationConfig</span></code>,
+including penalties for token repetition, constraints for requiring certain
+tokens to be in the output, and lists of token IDs that you do not want in your
+output. Check out the documentation <a class="reference external" href="https://huggingface.co/docs/transformers/v4.41.3/en/main_classes/text_generation#transformers.GenerationConfig">here</a>.</p>
+</div>
+<p>Let’s generate text with this setup.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generated</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">generated</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="s2">&quot;generated_text&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>It was the best of times, it was the worst of times,&quot; says Darrif, who was hired in 2013 to help the Giants get to Super Bowl XLI.
+It was the best of times, it was the best of times, but when things come around and things go awry. I could have done without these two years ago.
+It was the best of times, it was the worst,&quot; he said. &quot;We couldn&#39;t even get to the finish line. Then we made it. People are very good
+It was the best of times, it was the worst,&quot; his longtime manager Davey Johnson said after Friday&#39;s 0-0 draw with Sunderland.
+
+&quot;They did not
+It was the best of times, it was the worst. There would be three days of pain after the game. And then I would go through that pain. There were days
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="prompting">
+<h2><span class="section-number">17.5. </span>Prompting<a class="headerlink" href="#prompting" title="Permalink to this headline">#</a></h2>
+<p>Thus far we have been working with raw generation. But the surge in popularity
+around LLMs is in part due to the models that have been trained for interactive
+prompting. Typically, this kind of training involves fine-tuning a big model on
+a host of different tasks/data, which range from question–answer pairs to
+ranked-choice model responses. Prompting itself is a huge topic, so we will
+focus on how you might use more interactive LLMs for academic research.</p>
+<section id="for-chat">
+<h3><span class="section-number">17.5.1. </span>For chat<a class="headerlink" href="#for-chat" title="Permalink to this headline">#</a></h3>
+<p>Models in Meta’s Llama series as well as Mistral AI’s products are good options
+for conversational agents. You can download them from Hugging Face. There are a
+number of different sizes to choose from, which come with (probably
+unsurprising) trade-offs: smaller models, in the 7-13 billion parameter range,
+have a far less memory footprint than models with 30 billion parameters or
+more, but the latter models are more accurate.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">transformers</span></code> to load one of these models. The library is also integrated
+with a suite of optimization/quantization packages that can help you manage
+computational resources, like <a class="reference external" href="https://huggingface.co/docs/peft/index">PEFT</a>, <a class="reference external" href="https://pypi.org/project/bitsandbytes/">bitsandbytes</a> and <a class="reference external" href="https://github.com/Dao-AILab/flash-attention">flash
+attention</a>.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">chatbot</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span>
+    <span class="s2">&quot;text-generation&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;meta-llama/Meta-Llama-3-8B-Instruct&quot;</span><span class="p">,</span>
+    <span class="n">torch_dtype</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+    <span class="n">device_map</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Prompting these models requires you to define <strong>roles</strong> for the chatbot and the
+user.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">chat</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;You answer all prompts with &#39;meow&#39;.&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Can you tell me more about NLP?&quot;</span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">chatbot</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">max_new_tokens</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;generated_text&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;system&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="s2">&quot;You answer all prompts with &#39;meow&#39;.&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="s1">&#39;Can you tell me more about NLP?&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;assistant&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="s1">&#39;  Meow! 😺&#39;</span><span class="p">}]</span>
+</pre></div>
+</div>
+<p>If you’d like to fine-tune this kind of model, you can follow the general
+workflow from above. The data structures you’ll use range from question–answer
+pairs (separated by some kind of delimiter, eg. “### Assistant ###” and “###
+User ###”) or conversation trees (multiple question–answer pairs). See the
+<a class="reference external" href="https://huggingface.co/OpenAssistant">OpenAssistant</a> datasets for examples.</p>
+</section>
+<section id="template-prompting">
+<h3><span class="section-number">17.5.2. </span>Template prompting<a class="headerlink" href="#template-prompting" title="Permalink to this headline">#</a></h3>
+<p>In the context of prompting, it’s helpful to make a distinction between
+<strong>chat</strong> models, which are trained for conversational exchanges, and
+<strong>instruct</strong> models, which are trained to follow some instruction in a prompt.
+Many models and platforms will mix these types of models, but the distinction
+is useful for tasks that involve information extraction.</p>
+<p>This is also where you might think about <strong>prompt engineering</strong>: tweaking how
+you write a prompt to optimize some task you’d like to perform. Typically
+you’ll need to go through some trial and error to get the right prompt, but in
+general you want to think about supplying some kind of example or format for
+the model to use when it returns a response.</p>
+<p>Below, we show an example of using one of Microsoft’s <a class="reference external" href="https://huggingface.co/microsoft/Phi-3-mini-4k-instruct">Phi-3</a> models to
+extract information from text.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="o">=</span> <span class="n">GenerationConfig</span><span class="p">(</span>
+    <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">num_beams</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">early_stopping</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="mi">1</span>
+    <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+<span class="n">extractor</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span>
+    <span class="s2">&quot;text-generation&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;microsoft/Phi-3-mini-4k-instruct&quot;</span>
+    <span class="n">generation_config</span> <span class="o">=</span> <span class="n">config</span><span class="p">,</span>
+    <span class="n">device</span> <span class="o">=</span> <span class="s2">&quot;auto_map&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Here is a profile:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">profile</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;Tyler Shoemaker is a Postdoctoral Scholar affiliated with the DataLab &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;at the University of California, Davis. A digital humanist, he conducts &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;research on language technology, focusing on how methods in natural &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;language processing (NLP) crosscut the interpretive and theoretic &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;frameworks of literary and media studies. At the DataLab, Tyler &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;develops and implements NLP methods across a variety of research &quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;domains ranging from early modern print to environmental and health &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sciences.&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we want to get the name, position, and keywords from this profile. We do
+this by writing out the template of what we want and interpolating the relevant
+information directly into the prompt string.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;Extract the name and position from the researcher&#39;s profile. &quot;</span>
+    <span class="sa">f</span><span class="s2">&quot;Then include up to five keywords that best describe &quot;</span>
+    <span class="sa">f</span><span class="s2">&quot;their work. Use commas to separate keywords.</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="sa">f</span><span class="s2">&quot;Profile: </span><span class="si">{</span><span class="n">profile</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="sa">f</span><span class="s2">&quot;1. Name: &lt;name&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="sa">f</span><span class="s2">&quot;2. Position: &lt;position&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="sa">f</span><span class="s2">&quot;3. Keywords: &lt;keywords&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The full prompt looks like this:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extract the name and position from the researcher&#39;s profile. Then include up to five keywords that best describe their work. Use commas to separate keywords.
+Profile: (&#39;Tyler Shoemaker is a Postdoctoral Scholar affiliated with the DataLab &#39;, &#39;at the University of California, Davis. A digital humanist, he conducts &#39;, &#39;research on language technology, focusing on how methods in natural &#39;, &#39;language processing (NLP) crosscut the interpretive and theoretic &#39;, &#39;frameworks of literary and media studies. At the DataLab, Tyler &#39;, &#39;develops and implements NLP methods across a variety of research &#39;, &#39;domains ranging from early modern print to environmental and health &#39;, &#39;sciences.&#39;)
+1. Name: &lt;name&gt;
+2. Position: &lt;position&gt;
+3. Keywords: &lt;keywords&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s send it to the model. We can set <code class="docutils literal notranslate"><span class="pre">return_full_text</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code> to get
+only those parts of the generated text that correspond to the extracted
+information.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="p">,</span><span class="o">=</span> <span class="n">extractor</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">return_full_text</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;generated_text&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Name</span><span class="p">:</span> <span class="n">Tyler</span> <span class="n">Shoemaker</span>
+<span class="n">Position</span><span class="p">:</span> <span class="n">Postdoctoral</span> <span class="n">Scholar</span>
+<span class="n">Keywords</span><span class="p">:</span> <span class="n">language</span> <span class="n">technology</span><span class="p">,</span> <span class="n">natural</span> <span class="n">language</span> <span class="n">processing</span><span class="p">,</span> <span class="n">literary</span> <span class="ow">and</span> <span class="n">media</span>
+<span class="n">studies</span><span class="p">,</span> <span class="n">digital</span> <span class="n">humanities</span><span class="p">,</span> <span class="n">environmental</span> <span class="n">sciences</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>This works well! But be warned: you will need to parse this raw output into
+some structured format if you want to use this information for some other task.
+Model outputs often require additional postprocessing like this, especially if
+you’re sending them down the data science pipeline.</p>
+</section>
+<section id="retrieval-augmented-generation">
+<h3><span class="section-number">17.5.3. </span>Retrieval-augmented generation<a class="headerlink" href="#retrieval-augmented-generation" title="Permalink to this headline">#</a></h3>
+<p>Finally, there is <strong>retrieval-augmented generation</strong>, or RAG. This is something
+you’d do if you wanted to think about classic information retrieval tasks like
+search, document similarity analysis, and so on. We won’t show a concrete
+example, but the basic idea is this:</p>
+<ul class="simple">
+<li><p>First, you train an encoder model like BERT on question–answer pairs (or
+some other kind of paired data)</p></li>
+<li><p>Send every document in your corpus to this model to create an embedding for
+it</p></li>
+<li><p>When you’d like to search/summarize these documents, use that same document
+to create an embedding for a search string/prompt. Then, return the k-most
+similar documents for that new embedding</p></li>
+<li><p>Interpolate document text into your search string/prompt and then send that
+to a generative model, which will summarize the results</p></li>
+</ul>
+<p>Want to implement a system of this kind? Take a look at <a class="reference external" href="https://www.langchain.com/">LangChain</a> and
+<a class="reference external" href="https://github.com/stanfordnlp/dspy">DSPy</a>.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="81_llms.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">16. </span>Large Language Models: An Introduction</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preliminaries">17.1. Preliminaries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tuning-a-bert-model">17.2. Fine-Tuning a BERT Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-our-labels">17.2.1. Defining our labels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">17.2.2. Data preparation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logging">17.2.3. Logging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-hyperparameters">17.2.4. Training hyperparameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-training">17.2.5. Model training</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-evaluation">17.3. Model Evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-pipeline">17.3.1. Using a pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-accuracy">17.3.2. Classification accuracy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generative-models">17.4. Generative Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#text-generation">17.4.1. Text Generation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-strategies">17.4.2. Sampling strategies</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompting">17.5. Prompting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-chat">17.5.1. For chat</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#template-prompting">17.5.2. Template prompting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-augmented-generation">17.5.3. Retrieval-augmented generation</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tyler Shoemaker and Carl Stahmer
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
+  <img alt="CC BY-SA 4.0" src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg"> 
+</a>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

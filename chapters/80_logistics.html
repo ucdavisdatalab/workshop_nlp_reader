@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>15. Overview &#8212; Natural Language Processing for Data Science</title>
+    <title>15. Section Overview &#8212; Natural Language Processing for Data Science</title>
   
   
   
@@ -64,6 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/80_logistics';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="16. Large Language Models: An Introduction" href="81_llms.html" />
     <link rel="prev" title="14. Assessment" href="95_assessment.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en-us"/>
@@ -177,7 +178,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Basics of Large Language Models</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">15. Overview</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">15. Section Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="81_llms.html">16. Large Language Models: An Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="82_using_llms.html">17. Working with Large Language Models</a></li>
 </ul>
 
     </div>
@@ -348,7 +351,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -359,11 +364,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Overview</h1>
+    <h1>Section Overview</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-and-data-setup">15.1. File and Data Setup</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -373,9 +386,41 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="overview">
-<h1><span class="section-number">15. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h1>
-<p>TBD</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="section-overview">
+<h1><span class="section-number">15. </span>Section Overview<a class="headerlink" href="#section-overview" title="Permalink to this headline">#</a></h1>
+<p>This workshop focuses on the basics of working with large language models
+(LLMs) as part of the research pipeline, including understanding and
+interrogating the models themselves as well as interacting with their
+generative capabilities. Specific topics will include: setting up your own
+open-source LLM, fine-tuning LLMs, and the basics of prompt engineering.</p>
+<section id="file-and-data-setup">
+<h2><span class="section-number">15.1. </span>File and Data Setup<a class="headerlink" href="#file-and-data-setup" title="Permalink to this headline">#</a></h2>
+<p>We will be using Google Colab’s platform and Google Drive during the workshop.
+You must have a Google account to work in the Colab environment. Perform the
+following steps to setup your environment for the course:</p>
+<ol class="arabic simple">
+<li><p>Download the <a class="reference external" href="https://datalab.ucdavis.edu/nlp_workshop_data/">data</a></p></li>
+<li><p>Un-compress the downloaded .zip file by double clicking on it</p></li>
+<li><p>Visit the Google Colab <a class="reference external" href="https://colab.research.google.com">website</a> at and sign-in using your Google
+account</p></li>
+<li><p>In a separate browser tab (from the one where you are logged-in to Colab)
+sign-in to your Google Drive</p></li>
+<li><p>Upload the <code class="docutils literal notranslate"><span class="pre">nlp_workshop_data</span></code> directory into the root of your Google Drive</p></li>
+</ol>
+<p>Once you have completed the above steps, you will have your basic environment
+setup. Next, you’ll need to create a blank notebook in Google Colab. To do
+this, go to Google Colab and choose “File-&gt;New Notebook” from the File Menu.
+Alternatively, select “New Notebook” in the bottom right corner of the
+notebooks pop-up if it appears in your window.</p>
+<p>Now, you need to connect your Google Drive to your Colab environment. To do
+this, run the following code in the code cell at appears at the top of your
+blank notebook:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Your environment should be ready to go!</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -418,6 +463,15 @@ document.write(`
         <p class="prev-next-title"><span class="section-number">14. </span>Assessment</p>
       </div>
     </a>
+    <a class="right-next"
+       href="81_llms.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">16. </span>Large Language Models: An Introduction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -427,6 +481,20 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-and-data-setup">15.1. File and Data Setup</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
