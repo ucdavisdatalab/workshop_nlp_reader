@@ -23,3 +23,5 @@ parts:
     numbered: true
     chapters:
       - file: chapters/80_logistics
+      - file: chapters/81_llms
+      - file: chapters/82_using_llms
