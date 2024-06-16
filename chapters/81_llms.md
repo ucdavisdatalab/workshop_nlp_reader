@@ -40,11 +40,6 @@ We need the following libraries:
 :tags: [remove-output]
 import torch
 from transformers import AutoTokenizer, AutoModel
-import numpy as np
-import pandas as pd
-from sklearn.metrics.pairwise import cosine_similarity
-import matplotlib.pyplot as plt
-import seaborn as sns
 ```
 
 
