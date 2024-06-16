@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en-us" >
+<html lang="en-us" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>7. Topic Modeling &#8212; Natural Language Processing for Data Science</title>
   
@@ -19,48 +18,46 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=69f72ec1" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=dddfd265"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/06_topic-modeling';</script>
@@ -77,7 +74,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -112,11 +117,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -131,9 +139,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="index.html">
+  
   
   
   
@@ -143,12 +153,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/datalab-logo-full-color-rgb.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/datalab-logo-full-color-rgb.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/datalab-logo-full-color-rgb.png" class="logo__image only-light" alt="Natural Language Processing for Data Science - Home"/>
+    <script>document.write(`<img src="../_static/datalab-logo-full-color-rgb.png" class="logo__image only-dark" alt="Natural Language Processing for Data Science - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -336,20 +357,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -407,10 +430,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="topic-modeling">
-<h1><span class="section-number">7. </span>Topic Modeling<a class="headerlink" href="#topic-modeling" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">7. </span>Topic Modeling<a class="headerlink" href="#topic-modeling" title="Link to this heading">#</a></h1>
 <p>This final chapter follows from the previous chapter’s use of cosine
 similarity. The latter used this metric to cluster obituaries into broad
 categories based on what those obituaries were about. Similarly, in this
@@ -443,7 +466,7 @@ hyperparameters</p></li>
 </ul>
 </div>
 <section id="how-it-works">
-<h2><span class="section-number">7.1. </span>How It Works<a class="headerlink" href="#how-it-works" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">7.1. </span>How It Works<a class="headerlink" href="#how-it-works" title="Link to this heading">#</a></h2>
 <aside class="margin sidebar">
 <p class="sidebar-title">Citations</p>
 <p>This description of topic modeling is influenced by Ted Underwood’s very
@@ -495,7 +518,7 @@ P(T|W,D) = \frac{\text{# of $W$ in } T + \eta_W}{\text{total tokens in } T + \et
 \]</div>
 </section>
 <section id="preliminaries">
-<h2><span class="section-number">7.2. </span>Preliminaries<a class="headerlink" href="#preliminaries" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">7.2. </span>Preliminaries<a class="headerlink" href="#preliminaries" title="Link to this heading">#</a></h2>
 <p>Before we begin building a model, we’ll load the libraries we need and our
 data. As we’ve done in past chapters, we use a file manifest to keep track of
 things.</p>
@@ -569,7 +592,7 @@ Genres: Fiction, Classics, Nonfiction, Children’s Books, Teen &amp; Young Adul
 </div>
 </section>
 <section id="building-a-topic-model">
-<h2><span class="section-number">7.3. </span>Building a Topic Model<a class="headerlink" href="#building-a-topic-model" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">7.3. </span>Building a Topic Model<a class="headerlink" href="#building-a-topic-model" title="Link to this heading">#</a></h2>
 <aside class="margin sidebar">
 <p class="sidebar-title">You may be asking…</p>
 <p>…why not use <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>? Well, there’s a <a class="reference external" href="https://github.com/scikit-learn/scikit-learn/issues/6777">reported bug</a> in this
@@ -583,7 +606,7 @@ C++ topic modeling too, Tomato. Its API is fairly intuitive and comes with a
 lot of options, which we’ll leverage to build the best possible model for our
 corpus.</p>
 <section id="initializing-a-corpus">
-<h3><span class="section-number">7.3.1. </span>Initializing a corpus<a class="headerlink" href="#initializing-a-corpus" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">7.3.1. </span>Initializing a corpus<a class="headerlink" href="#initializing-a-corpus" title="Link to this heading">#</a></h3>
 <p>Before we build the model, we need to load the data on which it will be
 trained. We use <code class="docutils literal notranslate"><span class="pre">Corpus</span></code> to do so. Be sure to split each file into a list of
 tokens before adding it to this object.</p>
@@ -601,7 +624,7 @@ tokens before adding it to this object.</p>
 </div>
 </section>
 <section id="initializing-a-model">
-<h3><span class="section-number">7.3.2. </span>Initializing a model<a class="headerlink" href="#initializing-a-model" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">7.3.2. </span>Initializing a model<a class="headerlink" href="#initializing-a-model" title="Link to this heading">#</a></h3>
 <p>To initialize a model with <code class="docutils literal notranslate"><span class="pre">tomotopy</span></code>, all we need is the corpus from above and
 the number of topics the model will generate. Determining how many topics to
 use is a matter of some debate and complexity, which you’ll learn more about
@@ -617,7 +640,7 @@ reproducibility.</p>
 </div>
 </section>
 <section id="training-a-model">
-<h3><span class="section-number">7.3.3. </span>Training a model<a class="headerlink" href="#training-a-model" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">7.3.3. </span>Training a model<a class="headerlink" href="#training-a-model" title="Link to this heading">#</a></h3>
 <p>Our model is now ready to be trained. Under the hood, this happens in an
 iterative fashion, so we need to set the total number of iterations for the
 training. With that set, it’s simply a matter of calling <code class="docutils literal notranslate"><span class="pre">.train()</span></code>.</p>
@@ -637,7 +660,7 @@ for this data.</p>
 </div>
 </section>
 <section id="inspecting-the-results">
-<h3><span class="section-number">7.3.4. </span>Inspecting the results<a class="headerlink" href="#inspecting-the-results" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">7.3.4. </span>Inspecting the results<a class="headerlink" href="#inspecting-the-results" title="Link to this heading">#</a></h3>
 <p>Let’s look at the trained model. For each topic, we can get the words that are
 most associated with it. The accompanying score is the probability of that word
 appearing in the topic.</p>
@@ -936,7 +959,7 @@ topic.</p>
 </section>
 </section>
 <section id="fine-tuning-the-basics">
-<h2><span class="section-number">7.4. </span>Fine Tuning: The Basics<a class="headerlink" href="#fine-tuning-the-basics" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">7.4. </span>Fine Tuning: The Basics<a class="headerlink" href="#fine-tuning-the-basics" title="Link to this heading">#</a></h2>
 <p>Everything is working so far. But our topics are extremely general. More, their
 total proportions across the corpus are relatively homogeneous. This may be an
 indicator that our model has not been fitted to our corpus particularly well.</p>
@@ -973,7 +996,7 @@ to the way we initialize our model so that it better reflects the specifics of
 our corpus.</p>
 <p>But there are several different parameters to adjust. So what should we change?</p>
 <section id="number-of-topics">
-<h3><span class="section-number">7.4.1. </span>Number of topics<a class="headerlink" href="#number-of-topics" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">7.4.1. </span>Number of topics<a class="headerlink" href="#number-of-topics" title="Link to this heading">#</a></h3>
 <p>An easy answer would be the number of topics. If, as above, your topics seem
 too general, it may be because you’ve set too small a number of topics for the
 model. Let’s set a higher number of topics for our model and see what changes.</p>
@@ -1067,7 +1090,7 @@ aren’t quite as interpretable, but they also help us make a more empirically
 grounded assessment of the resultant topics.</p>
 </section>
 <section id="perplexity">
-<h3><span class="section-number">7.4.2. </span>Perplexity<a class="headerlink" href="#perplexity" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">7.4.2. </span>Perplexity<a class="headerlink" href="#perplexity" title="Link to this heading">#</a></h3>
 <p>The first of these measures is <strong>perplexity</strong>. In text analysis, we use
 perplexity scoring to evaluate how well a model predicts an sample sequence of
 words. Essentially, it measures how “surprised” a model is by that sequence.
@@ -1311,7 +1334,7 @@ Topic 28: social (0.0212%), power (0.0115%), political (0.0110%), culture (0.009
 </div>
 </section>
 <section id="coherence">
-<h3><span class="section-number">7.4.3. </span>Coherence<a class="headerlink" href="#coherence" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">7.4.3. </span>Coherence<a class="headerlink" href="#coherence" title="Link to this heading">#</a></h3>
 <p>If you find that your perplexity scores don’t translate to interpretable
 models, you might use a <strong>coherence score</strong> instead. Coherence scores measure
 the degree of semantic similarity among words in a topic. Some people prefer to
@@ -1526,9 +1549,9 @@ create this as we’ll be making a few of these plots later on.</p>
 </section>
 </section>
 <section id="fine-tuning-advanced">
-<h2><span class="section-number">7.5. </span>Fine Tuning: Advanced<a class="headerlink" href="#fine-tuning-advanced" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">7.5. </span>Fine Tuning: Advanced<a class="headerlink" href="#fine-tuning-advanced" title="Link to this heading">#</a></h2>
 <section id="hyperparameters-alpha-and-eta">
-<h3><span class="section-number">7.5.1. </span>Hyperparameters: alpha and eta<a class="headerlink" href="#hyperparameters-alpha-and-eta" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">7.5.1. </span>Hyperparameters: alpha and eta<a class="headerlink" href="#hyperparameters-alpha-and-eta" title="Link to this heading">#</a></h3>
 <p>The number of topics is not the only value we can set when initializing a
 model. LDA modeling has two key <strong>hyperparameters</strong>, which we can configure to
 control the nature of the topics a training run produces:</p>
@@ -1607,7 +1630,7 @@ For the high alpha/low eta model:
 </div>
 </section>
 <section id="choosing-hyperparameter-values">
-<h3><span class="section-number">7.5.2. </span>Choosing hyperparameter values<a class="headerlink" href="#choosing-hyperparameter-values" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">7.5.2. </span>Choosing hyperparameter values<a class="headerlink" href="#choosing-hyperparameter-values" title="Link to this heading">#</a></h3>
 <p>In the literature about LDA modeling, researchers have suggested various ways
 of setting hyperparameters. For example, the authors of <a class="reference external" href="https://www.pnas.org/doi/10.1073/pnas.0307752101">this paper</a>
 suggest that the ideal alpha and eta values are <span class="math notranslate nohighlight">\(\frac{50}{k}\)</span> and 0.1,
@@ -1720,7 +1743,7 @@ incorporating a number of different considerations (and compromises!) that, at
 the end of the day, should work in the service of your research question.</p>
 </section>
 <section id="final-configuration">
-<h3><span class="section-number">7.5.3. </span>Final configuration<a class="headerlink" href="#final-configuration" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">7.5.3. </span>Final configuration<a class="headerlink" href="#final-configuration" title="Link to this heading">#</a></h3>
 <p>To return to the question of our own corpus, here are the best topic
 number/hyperparameter configuration from a grid search run:</p>
 <div class="cell docutils container">
@@ -1930,7 +1953,7 @@ Topic 28: god (0.0339%), life (0.0277%), spiritual (0.0215%), practice (0.0177%)
 </section>
 </section>
 <section id="model-exploration">
-<h2><span class="section-number">7.6. </span>Model Exploration<a class="headerlink" href="#model-exploration" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">7.6. </span>Model Exploration<a class="headerlink" href="#model-exploration" title="Link to this heading">#</a></h2>
 <p>Topic proportions and top words are all helpful, but there are other ways to
 dig more deeply into a model. This final section will show you a few examples
 of this.</p>
@@ -2484,11 +2507,10 @@ what you find!</p>
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="05_clustering-and-classification.html"
@@ -2508,10 +2530,7 @@ what you find!</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -2519,6 +2538,7 @@ what you find!</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -2569,6 +2589,7 @@ By Tyler Shoemaker and Carl Stahmer
   
   <div class="footer-item">
     
+
   </div>
   
   <div class="footer-item">
@@ -2594,8 +2615,8 @@ By Tyler Shoemaker and Carl Stahmer
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en-us" >
+<html lang="en-us" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>12. Classification and Feature Engineering &#8212; Natural Language Processing for Data Science</title>
   
@@ -19,48 +18,46 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=69f72ec1" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=dddfd265"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/52_classification-and-feature-engineering';</script>
@@ -77,7 +74,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -112,11 +117,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -131,9 +139,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="index.html">
+  
   
   
   
@@ -143,12 +153,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/datalab-logo-full-color-rgb.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/datalab-logo-full-color-rgb.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/datalab-logo-full-color-rgb.png" class="logo__image only-light" alt="Natural Language Processing for Data Science - Home"/>
+    <script>document.write(`<img src="../_static/datalab-logo-full-color-rgb.png" class="logo__image only-dark" alt="Natural Language Processing for Data Science - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -336,20 +357,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -401,10 +424,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="classification-and-feature-engineering">
-<h1><span class="section-number">12. </span>Classification and Feature Engineering<a class="headerlink" href="#classification-and-feature-engineering" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">12. </span>Classification and Feature Engineering<a class="headerlink" href="#classification-and-feature-engineering" title="Link to this heading">#</a></h1>
 <p>This chapter demonstrates how to apply what we’ve learned so far about document
 annotation to build a text classifier. Our emphasis will be on <strong>engineering</strong>
 features for a model. While, in NLP, token counts are often sufficient for
@@ -431,7 +454,7 @@ pursue when using NLP methods in your research.</p>
 </ul>
 </div>
 <section id="preliminaries">
-<h2><span class="section-number">12.1. </span>Preliminaries<a class="headerlink" href="#preliminaries" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">12.1. </span>Preliminaries<a class="headerlink" href="#preliminaries" title="Link to this heading">#</a></h2>
 <p>These are the libraries you will need for this chapter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -510,9 +533,9 @@ to do this.</p>
 </div>
 </section>
 <section id="modeling-i">
-<h2><span class="section-number">12.2. </span>Modeling I<a class="headerlink" href="#modeling-i" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">12.2. </span>Modeling I<a class="headerlink" href="#modeling-i" title="Link to this heading">#</a></h2>
 <section id="tf-idf-vectors">
-<h3><span class="section-number">12.2.1. </span>Tf-idf vectors<a class="headerlink" href="#tf-idf-vectors" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">12.2.1. </span>Tf-idf vectors<a class="headerlink" href="#tf-idf-vectors" title="Link to this heading">#</a></h3>
 <p>Before we begin feature engineering, we’ll build a baseline model against which
 to compare those features. Our comparison model will be one built with tf-idf
 vectors. These vectors are the product of fitting a <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>
@@ -586,7 +609,7 @@ the probability of a document’s tokens appearing together with its specific
 frequency values. This is known as an <a class="reference external" href="https://en.wikipedia.org/wiki/Arg_max">argmax</a> classifier.</p>
 </section>
 <section id="tf-idf-model">
-<h3><span class="section-number">12.2.2. </span>Tf-idf model<a class="headerlink" href="#tf-idf-model" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">12.2.2. </span>Tf-idf model<a class="headerlink" href="#tf-idf-model" title="Link to this heading">#</a></h3>
 <p>If this seems like a lot, don’t worry. While it can take a while to get a grip
 on the underlying logic of such a classifier, at the very least it’s easy
 enough to implement the code for it. <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> has a built-in model object
@@ -654,9 +677,9 @@ dedicated to this latter strategy.</p>
 </section>
 </section>
 <section id="feature-engineering">
-<h2><span class="section-number">12.3. </span>Feature Engineering<a class="headerlink" href="#feature-engineering" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">12.3. </span>Feature Engineering<a class="headerlink" href="#feature-engineering" title="Link to this heading">#</a></h2>
 <section id="overview">
-<h3><span class="section-number">12.3.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">12.3.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h3>
 <p>Training a classifier with tf-idf scores is an absolutely valid method. But
 there are other features we can use to train a classifier, which don’t rely so
 heavily on particular words. There are a number of scenarios for which you
@@ -709,7 +732,7 @@ useful: if the distributions are different for a feature (i.e., they’re
 </div>
 </section>
 <section id="document-length">
-<h3><span class="section-number">12.3.2. </span>Document length<a class="headerlink" href="#document-length" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">12.3.2. </span>Document length<a class="headerlink" href="#document-length" title="Link to this heading">#</a></h3>
 <p>The first of our metrics is a simple one: document length. Document length is a
 surprisingly effective indicator of different genres, and, even better, it’s
 very easy information to collect. In fact, there’s no need to write custom
@@ -728,7 +751,7 @@ code; just use <code class="docutils literal notranslate"><span class="pre">len(
 </div>
 </section>
 <section id="hapax-richness">
-<h3><span class="section-number">12.3.3. </span>Hapax richness<a class="headerlink" href="#hapax-richness" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">12.3.3. </span>Hapax richness<a class="headerlink" href="#hapax-richness" title="Link to this heading">#</a></h3>
 <p>Our second metric is <strong>hapax richness</strong>. If you’ll recall from the <a class="reference external" href="https://ucdavisdatalab.github.io/workshop_getting_started_with_textual_data/04_corpus-analytics.html#raw-metrics-terms">second
 day</a> of our Getting Started with Textual Data workshop series, a hapax
 (short for “hapax legomenon”) is a word that occurs only once in a document.
@@ -906,7 +929,7 @@ chunks. We won’t do this now, but keep in mind that you may have to make such
 modifications when engineering features.</p>
 </section>
 <section id="active-and-passive-voice">
-<h3><span class="section-number">12.3.4. </span>Active and passive voice<a class="headerlink" href="#active-and-passive-voice" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">12.3.4. </span>Active and passive voice<a class="headerlink" href="#active-and-passive-voice" title="Link to this heading">#</a></h3>
 <p>From here, our features will be a little more complex. That complexity is
 twofold. First, these features require more coding work than the ones above;
 and second, they require us to think more carefully about relationships across
@@ -949,7 +972,7 @@ that total.</p>
 </div>
 </section>
 <section id="abstract-nouns">
-<h3><span class="section-number">12.3.5. </span>Abstract nouns<a class="headerlink" href="#abstract-nouns" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">12.3.5. </span>Abstract nouns<a class="headerlink" href="#abstract-nouns" title="Link to this heading">#</a></h3>
 <p>The following code follows a similar structure to the code above. Below, we use
 <code class="docutils literal notranslate"><span class="pre">spaCy</span></code>’s part-of-speech tags to identify nouns in a document. Then we
 determine whether these are abstract nouns, on the theory that abstracts and
@@ -991,7 +1014,7 @@ of what kind of noun it is that we’re working with.</p>
 </div>
 </section>
 <section id="cardinal-numbers">
-<h3><span class="section-number">12.3.6. </span>Cardinal numbers<a class="headerlink" href="#cardinal-numbers" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">12.3.6. </span>Cardinal numbers<a class="headerlink" href="#cardinal-numbers" title="Link to this heading">#</a></h3>
 <p>So far we’ve been eliding potentially important differences between abstracts
 and summaries. Let’s develop a metric that might help us distinguish between
 the two of them. One such metric could be a simple count of the number of
@@ -1021,7 +1044,7 @@ number by the length of the document.</p>
 </section>
 </section>
 <section id="modeling-ii">
-<h2><span class="section-number">12.4. </span>Modeling II<a class="headerlink" href="#modeling-ii" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">12.4. </span>Modeling II<a class="headerlink" href="#modeling-ii" title="Link to this heading">#</a></h2>
 <p>With our features engineered, it’s time to build another model. This time,
 however, we send it a much smaller set of features, rather than that giant DTM
 of tf-idf vectors. The workflow is almost entirely the same, save for two
@@ -1140,11 +1163,10 @@ first model had ~18.5k features, this one only needs five.</p>
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="51_text-annotation-with-spacy.html"
@@ -1164,10 +1186,7 @@ first model had ~18.5k features, this one only needs five.</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1175,6 +1194,7 @@ first model had ~18.5k features, this one only needs five.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1219,6 +1239,7 @@ By Tyler Shoemaker and Carl Stahmer
   
   <div class="footer-item">
     
+
   </div>
   
   <div class="footer-item">
@@ -1244,8 +1265,8 @@ By Tyler Shoemaker and Carl Stahmer
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en-us" >
+<html lang="en-us" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>11. Text Annotation with spaCy &#8212; Natural Language Processing for Data Science</title>
   
@@ -19,48 +18,46 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=69f72ec1" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=dddfd265"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/51_text-annotation-with-spacy';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -75,7 +72,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -110,11 +115,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -129,9 +137,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="index.html">
+  
   
   
   
@@ -141,12 +151,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/datalab-logo-full-color-rgb.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/datalab-logo-full-color-rgb.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/datalab-logo-full-color-rgb.png" class="logo__image only-light" alt="Natural Language Processing for Data Science - Home"/>
+    <script>document.write(`<img src="../_static/datalab-logo-full-color-rgb.png" class="logo__image only-dark" alt="Natural Language Processing for Data Science - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -334,20 +355,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -406,10 +429,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="text-annotation-with-spacy">
-<h1><span class="section-number">11. </span>Text Annotation with spaCy<a class="headerlink" href="#text-annotation-with-spacy" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">11. </span>Text Annotation with spaCy<a class="headerlink" href="#text-annotation-with-spacy" title="Link to this heading">#</a></h1>
 <p>This chapter introduces the general field of natural language processing, or
 NLP. While NLP is often used interchangeably with text mining/analytics in
 introductory settings, the former differs in important ways from many of the
@@ -431,9 +454,9 @@ makes available</p></li>
 </ul>
 </div>
 <section id="nlp-vs-text-mining-in-brief">
-<h2><span class="section-number">11.1. </span>NLP vs. Text Mining: In Brief<a class="headerlink" href="#nlp-vs-text-mining-in-brief" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">11.1. </span>NLP vs. Text Mining: In Brief<a class="headerlink" href="#nlp-vs-text-mining-in-brief" title="Link to this heading">#</a></h2>
 <section id="data-structures">
-<h3><span class="section-number">11.1.1. </span>Data structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">11.1.1. </span>Data structures<a class="headerlink" href="#data-structures" title="Link to this heading">#</a></h3>
 <p>One way to distinguish NLP from text mining has has to do with the various
 <strong>data structures</strong> we use in the former. Generally speaking, NLP methods are
 <strong>maximally preservative</strong> when it comes to representing textual information in
@@ -451,7 +474,7 @@ thinking about how text data is represented in NLP is <strong>annotation</strong
 to add, associate, or tag documents with extra information.</p>
 </section>
 <section id="model-driven-methods">
-<h3><span class="section-number">11.1.2. </span>Model-driven methods<a class="headerlink" href="#model-driven-methods" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">11.1.2. </span>Model-driven methods<a class="headerlink" href="#model-driven-methods" title="Link to this heading">#</a></h3>
 <p>The other key difference between text mining and NLP lies in the way the latter
 tends to be more <strong>model-driven</strong>. NLP methods often rely on statistical models
 to create the above information, and ultimately these models have a lot of
@@ -466,14 +489,14 @@ responsibly.</p>
 </section>
 </section>
 <section id="spacy-language-models">
-<h2><span class="section-number">11.2. </span>spaCy Language Models<a class="headerlink" href="#spacy-language-models" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">11.2. </span>spaCy Language Models<a class="headerlink" href="#spacy-language-models" title="Link to this heading">#</a></h2>
 <aside class="margin sidebar">
 <p class="sidebar-title">Want to know more?</p>
 <p>Explosion, the company behind <code class="docutils literal notranslate"><span class="pre">spaCy</span></code>, has a series of useful videos
-introducing the framework. <a class="reference external" href="https://www.youtube.com/watch?v=9k_EfV7Cns0&amp;t=1365s">This one</a> is a good place to start.</p>
+introducing the framework. <a class="reference external" href="https://www.youtube.com/watch?v=9k_EfV7Cns0&amp;amp;t=1365s">This one</a> is a good place to start.</p>
 </aside>
 <section id="spacy-pipelines">
-<h3><span class="section-number">11.2.1. </span><code class="docutils literal notranslate"><span class="pre">spaCy</span></code> pipelines<a class="headerlink" href="#spacy-pipelines" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">11.2.1. </span><code class="docutils literal notranslate"><span class="pre">spaCy</span></code> pipelines<a class="headerlink" href="#spacy-pipelines" title="Link to this heading">#</a></h3>
 <p>Much of this workshop series will use language models from <code class="docutils literal notranslate"><span class="pre">spaCy</span></code>, a very
 popular NLP library for Python. In essence, a <code class="docutils literal notranslate"><span class="pre">spaCy</span></code> model is a collection of
 sub-models arranged into a <strong>pipeline</strong>. The idea here is that you send a
@@ -487,7 +510,7 @@ model comes with a specific ordering of these tasks, but you can mix and match
 them after the fact.</p>
 </section>
 <section id="downloading-a-model">
-<h3><span class="section-number">11.2.2. </span>Downloading a model<a class="headerlink" href="#downloading-a-model" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">11.2.2. </span>Downloading a model<a class="headerlink" href="#downloading-a-model" title="Link to this heading">#</a></h3>
 <p>The specific model we’ll be using is <code class="docutils literal notranslate"><span class="pre">spaCy</span></code>’s medium-sized English model:
 <a class="reference external" href="https://github.com/explosion/spacy-models/releases/tag/en_core_web_sm-3.3.0">en_core_web_md</a>. It’s been trained on the <a class="reference external" href="https://catalog.ldc.upenn.edu/LDC2013T19">OntoNotes</a> corpus and
 it features several useful pipes, which we’ll discuss below.</p>
@@ -499,7 +522,7 @@ do so by running the following in a command line interface:</p>
 </section>
 </section>
 <section id="preliminaries">
-<h2><span class="section-number">11.3. </span>Preliminaries<a class="headerlink" href="#preliminaries" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">11.3. </span>Preliminaries<a class="headerlink" href="#preliminaries" title="Link to this heading">#</a></h2>
 <p>Once your model has downloaded, it’s time to set up an environment. Here are
 the libraries you’ll need for this chapter.</p>
 <div class="cell docutils container">
@@ -530,7 +553,7 @@ the libraries you’ll need for this chapter.</p>
 </div>
 </section>
 <section id="annotations">
-<h2><span class="section-number">11.4. </span>Annotations<a class="headerlink" href="#annotations" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">11.4. </span>Annotations<a class="headerlink" href="#annotations" title="Link to this heading">#</a></h2>
 <p>To annotate a document with the model, simply pass it to the model. We’ll use a
 short poem by Gertrude Stein to show this.</p>
 <div class="cell docutils container">
@@ -580,7 +603,7 @@ about them than Python’s base string methods have. In this sense, we might say
 that <code class="docutils literal notranslate"><span class="pre">spaCy</span></code> is additive in nature, whereas text mining methods are
 subtractive, or reductive.</p>
 <section id="document-annotations">
-<h3><span class="section-number">11.4.1. </span>Document annotations<a class="headerlink" href="#document-annotations" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">11.4.1. </span>Document annotations<a class="headerlink" href="#document-annotations" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">spaCy</span></code> annotations apply to either documents or individual tokens. Here are
 some document-level annotations:</p>
 <div class="cell docutils container">
@@ -830,7 +853,7 @@ the <code class="docutils literal notranslate"><span class="pre">spaCy</span></c
 the library’s <code class="docutils literal notranslate"><span class="pre">EntityRuler</span></code> <a class="reference external" href="https://spacy.io/api/entityruler">documentation</a> will show you how.</p>
 </section>
 <section id="token-annotations">
-<h3><span class="section-number">11.4.2. </span>Token annotations<a class="headerlink" href="#token-annotations" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">11.4.2. </span>Token annotations<a class="headerlink" href="#token-annotations" title="Link to this heading">#</a></h3>
 <p>In addition to storing all of this information about documents, <code class="docutils literal notranslate"><span class="pre">spaCy</span></code> creates
 a substantial amount of annotations for every token in a document. The same
 logic as above applies to accessing this information.</p>
@@ -1117,7 +1140,7 @@ which you might find useful, though your mileage may vary.</p>
 </section>
 </section>
 <section id="part-of-speech-tagging">
-<h2><span class="section-number">11.5. </span>Part-of-Speech Tagging<a class="headerlink" href="#part-of-speech-tagging" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">11.5. </span>Part-of-Speech Tagging<a class="headerlink" href="#part-of-speech-tagging" title="Link to this heading">#</a></h2>
 <p>One of the most common tasks in NLP involves assigning <strong>part-of-speech, or
 POS, tags</strong> to each token in a document. As we saw in the text mining series,
 these tags are a necessary step for certain text cleaning process, like
@@ -1260,7 +1283,7 @@ spreading    VBG    verb, gerund or present participle
 </div>
 </section>
 <section id="dependency-parsing">
-<h2><span class="section-number">11.6. </span>Dependency Parsing<a class="headerlink" href="#dependency-parsing" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">11.6. </span>Dependency Parsing<a class="headerlink" href="#dependency-parsing" title="Link to this heading">#</a></h2>
 <p>Another tool that can help with tasks like disambiguating word sense is
 dependency parsing. Dependency parsing involves analyzing the grammatical
 structure of text (usually sentences) to identify relationships between the
@@ -1471,7 +1494,7 @@ ghost      dobj          my mother&#39;s ghost
 </div>
 </section>
 <section id="putting-everything-together">
-<h2><span class="section-number">11.7. </span>Putting Everything Together<a class="headerlink" href="#putting-everything-together" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">11.7. </span>Putting Everything Together<a class="headerlink" href="#putting-everything-together" title="Link to this heading">#</a></h2>
 <p>Now that we’ve walked through all these options, let’s put them into action.
 Below, we construct two short examples of how you might combine different
 aspects of token attributes to analyze a text. Both are essentially
@@ -1479,7 +1502,7 @@ aspects of token attributes to analyze a text. Both are essentially
 to extract and analyze particular words in your corpus, or to find different
 grammatical patterns that could be of significance.</p>
 <section id="finding-lemmas">
-<h3><span class="section-number">11.7.1. </span>Finding lemmas<a class="headerlink" href="#finding-lemmas" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">11.7.1. </span>Finding lemmas<a class="headerlink" href="#finding-lemmas" title="Link to this heading">#</a></h3>
 <p>In the first, we use the <code class="docutils literal notranslate"><span class="pre">.lemma_</span></code> attribute to search through Book XI and
 match its tokens to a few key words. If you’ve read <em>The Odyssey</em>, you’ll know
 that Book XI is where Odysseus and his fellow sailors have to travel down to
@@ -1532,7 +1555,7 @@ cries    uttered such appalling cries
 </div>
 </section>
 <section id="verb-subject-relations">
-<h3><span class="section-number">11.7.2. </span>Verb-subject relations<a class="headerlink" href="#verb-subject-relations" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">11.7.2. </span>Verb-subject relations<a class="headerlink" href="#verb-subject-relations" title="Link to this heading">#</a></h3>
 <p>For our second example, we use dependency tags to find the subject of sentences
 in Book XI. As before, we iterate through each token in the document, this time
 checking to see whether it has the <code class="docutils literal notranslate"><span class="pre">nsubj</span></code> or <code class="docutils literal notranslate"><span class="pre">nsubjpass</span></code> tag for its <code class="docutils literal notranslate"><span class="pre">.dep_</span></code>
@@ -1986,11 +2009,10 @@ identify.</p>
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="50_logistics.html"
@@ -2010,10 +2032,7 @@ identify.</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -2021,6 +2040,7 @@ identify.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -2072,6 +2092,7 @@ By Tyler Shoemaker and Carl Stahmer
   
   <div class="footer-item">
     
+
   </div>
   
   <div class="footer-item">
@@ -2097,8 +2118,8 @@ By Tyler Shoemaker and Carl Stahmer
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

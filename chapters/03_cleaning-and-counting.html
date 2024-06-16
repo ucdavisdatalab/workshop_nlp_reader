@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en-us" >
+<html lang="en-us" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>4. Cleaning and Counting &#8212; Natural Language Processing for Data Science</title>
   
@@ -19,48 +18,46 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=69f72ec1" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=dddfd265"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/03_cleaning-and-counting';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -75,7 +72,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -110,11 +115,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -129,9 +137,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="index.html">
+  
   
   
   
@@ -141,12 +151,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/datalab-logo-full-color-rgb.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/datalab-logo-full-color-rgb.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/datalab-logo-full-color-rgb.png" class="logo__image only-light" alt="Natural Language Processing for Data Science - Home"/>
+    <script>document.write(`<img src="../_static/datalab-logo-full-color-rgb.png" class="logo__image only-dark" alt="Natural Language Processing for Data Science - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -334,20 +355,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -410,10 +433,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="cleaning-and-counting">
-<h1><span class="section-number">4. </span>Cleaning and Counting<a class="headerlink" href="#cleaning-and-counting" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">4. </span>Cleaning and Counting<a class="headerlink" href="#cleaning-and-counting" title="Link to this heading">#</a></h1>
 <p>At the end of the last chapter, we briefly discussed the complexities involved
 in working with textual data. Textual data presents a number of challenges –
 which stem as much from general truths about language as they do from data
@@ -440,9 +463,9 @@ phrases</p></li>
 </ul>
 </div>
 <section id="preliminaries">
-<h2><span class="section-number">4.1. </span>Preliminaries<a class="headerlink" href="#preliminaries" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.1. </span>Preliminaries<a class="headerlink" href="#preliminaries" title="Link to this heading">#</a></h2>
 <section id="overview">
-<h3><span class="section-number">4.1.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.1.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h3>
 <p>Think back to the end of the last chapter. There, we discussed differences
 between how computers represent and process text and our own way of reading.
 A key difference involves details like spelling and capitalization. For us, the
@@ -465,7 +488,7 @@ each of these steps below and, along the way, compare how they alter the
 original text to show why you might (or might not) implement them.</p>
 </section>
 <section id="setup">
-<h3><span class="section-number">4.1.2. </span>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.1.2. </span>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h3>
 <p>To make these comparisons, load in <em>Frankenstein</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -522,9 +545,9 @@ check the results of a cleaning step.</p>
 </section>
 </section>
 <section id="basic-cleaning">
-<h2><span class="section-number">4.2. </span>Basic Cleaning<a class="headerlink" href="#basic-cleaning" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.2. </span>Basic Cleaning<a class="headerlink" href="#basic-cleaning" title="Link to this heading">#</a></h2>
 <section id="case-normalization">
-<h3><span class="section-number">4.2.1. </span>Case normalization<a class="headerlink" href="#case-normalization" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.2.1. </span>Case normalization<a class="headerlink" href="#case-normalization" title="Link to this heading">#</a></h3>
 <p>The first step in cleaning is straightforward. Since computers are
 case-sensitive, we need to convert all characters to upper- or lowercase. It’s
 standard to change all letters to their lowercase forms.</p>
@@ -569,7 +592,7 @@ are ~250 more instances of this word after changing its case (it was 3,897
 earlier).</p>
 </section>
 <section id="removing-punctuation">
-<h3><span class="section-number">4.2.2. </span>Removing Punctuation<a class="headerlink" href="#removing-punctuation" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.2.2. </span>Removing Punctuation<a class="headerlink" href="#removing-punctuation" title="Link to this heading">#</a></h3>
 <p>Time to tackle punctuation. This step is trickier and it typically involves
 some back and forth between inspecting the original text and the output. This
 is because punctuation marks have different uses, so they can’t all be handled
@@ -695,7 +718,7 @@ of my undertaking
 </div>
 </section>
 <section id="removing-numbers">
-<h3><span class="section-number">4.2.3. </span>Removing numbers<a class="headerlink" href="#removing-numbers" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.2.3. </span>Removing numbers<a class="headerlink" href="#removing-numbers" title="Link to this heading">#</a></h3>
 <p>Removing numbers presents less of a problem. All we need to do is find
 characters 0-9 and replace them.</p>
 <div class="cell docutils container">
@@ -724,7 +747,7 @@ word sequences, so “letter:” and “letter.” will count as “letter.”</
 <p>That’s nearly a 40% reduction in the number of unique words!</p>
 </section>
 <section id="text-formatting">
-<h3><span class="section-number">4.2.4. </span>Text formatting<a class="headerlink" href="#text-formatting" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.2.4. </span>Text formatting<a class="headerlink" href="#text-formatting" title="Link to this heading">#</a></h3>
 <p>Our punctuation and number removal introduced extra whitespaces in the text
 (recall that we used a whitespace as a replacement character for some
 punctuation). We need to remove those, along with newlines and tabs. There are
@@ -783,7 +806,7 @@ robust. Here are the top 25 words:</p>
 </section>
 </section>
 <section id="stopword-removal">
-<h2><span class="section-number">4.3. </span>Stopword Removal<a class="headerlink" href="#stopword-removal" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.3. </span>Stopword Removal<a class="headerlink" href="#stopword-removal" title="Link to this heading">#</a></h2>
 <p>With the first few steps of our cleaning done, let’s pause and look more
 closely at our output. Inspecting the counts above shows a pattern: nearly all
 of them are <strong>deictic</strong> words, or words that are highly dependent on the
@@ -791,7 +814,7 @@ context in which they appear. We use these words constantly to refer to
 specific times, places, and persons – indeed, they’re the very sinew of
 language, and their high frequency counts reflect this.</p>
 <section id="high-frequency-words">
-<h3><span class="section-number">4.3.1. </span>High frequency words<a class="headerlink" href="#high-frequency-words" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.3.1. </span>High frequency words<a class="headerlink" href="#high-frequency-words" title="Link to this heading">#</a></h3>
 <p>Plotting word counts shows the full extent of these high frequency words.
 Below, we define a function to show them.</p>
 <aside class="margin sidebar">
@@ -860,7 +883,7 @@ remove them altogether. This is called <strong>stopping</strong> the text. But h
 know which <strong>stopwords</strong> to remove?</p>
 </section>
 <section id="defining-a-stop-list">
-<h3><span class="section-number">4.3.2. </span>Defining a stop list<a class="headerlink" href="#defining-a-stop-list" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.3.2. </span>Defining a stop list<a class="headerlink" href="#defining-a-stop-list" title="Link to this heading">#</a></h3>
 <p>The answer comes in two parts. First, compiling various <strong>stop lists</strong> has been
 an ongoing research area in NLP since the emergence of information retrieval in
 the 1950s. There are several popular lists, which capture many of the words
@@ -993,7 +1016,7 @@ long or less (this prevents us from seeing things like “st,” for street).</p
 </section>
 </section>
 <section id="advanced-cleaning">
-<h2><span class="section-number">4.4. </span>Advanced Cleaning<a class="headerlink" href="#advanced-cleaning" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.4. </span>Advanced Cleaning<a class="headerlink" href="#advanced-cleaning" title="Link to this heading">#</a></h2>
 <p>With stopwords removed, all primary text cleaning steps are complete. But there
 are two more steps that we could perform to further process our data: stemming
 and lemmatizing. We’ll consider these separately from the steps above because
@@ -1001,7 +1024,7 @@ they entail making significant changes to our data. Instead of simply removing
 pieces of irrelevant information, as with stopword removal, stemming and
 lemmatizing transform the forms of words.</p>
 <section id="stemming">
-<h3><span class="section-number">4.4.1. </span>Stemming<a class="headerlink" href="#stemming" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.4.1. </span>Stemming<a class="headerlink" href="#stemming" title="Link to this heading">#</a></h3>
 <p><strong>Stemming</strong> algorithms are rule-based procedures that reduce words to their
 root forms. They cut down on the amount of morphological variance in a corpus,
 merging plurals into singulars, changing gerunds into static verbs, etc. As
@@ -1049,14 +1072,14 @@ And more, “complic” isn’t really a word. How would we know what it means w
 looking at word distributions?</p>
 </section>
 <section id="lemmatizing">
-<h3><span class="section-number">4.4.2. </span>Lemmatizing<a class="headerlink" href="#lemmatizing" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.4.2. </span>Lemmatizing<a class="headerlink" href="#lemmatizing" title="Link to this heading">#</a></h3>
 <p><strong>Lemmatizing</strong> solves some of these problems, though at the cost of more
 complexity. Like stemming, lemmatization removes the inflectional forms of
 words. While it tends to be more conservative in its approach, it is better at
 avoiding lexical merges like “complic.” More, the result of lemmatization is
 always a fully readable word.</p>
 <section id="part-of-speech-tags-and-dependency-parsing">
-<h4><span class="section-number">4.4.2.1. </span>Part-of-speech tags and dependency parsing<a class="headerlink" href="#part-of-speech-tags-and-dependency-parsing" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">4.4.2.1. </span>Part-of-speech tags and dependency parsing<a class="headerlink" href="#part-of-speech-tags-and-dependency-parsing" title="Link to this heading">#</a></h4>
 <p>Lemmatizers can do all this because they use the context provided by
 <strong>part-of-speech tags</strong> (POS tags). To get the best results, you need to pipe
 in a tag for each word, which the lemmatizer uses to make its decisions. In
@@ -1082,7 +1105,7 @@ look like this:</p>
 </ol>
 </section>
 <section id="sample-lemmatization-workflow">
-<h4><span class="section-number">4.4.2.2. </span>Sample lemmatization workflow<a class="headerlink" href="#sample-lemmatization-workflow" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">4.4.2.2. </span>Sample lemmatization workflow<a class="headerlink" href="#sample-lemmatization-workflow" title="Link to this heading">#</a></h4>
 <p>We won’t do all of this for <em>Frankenstein</em>, but in the next session, when we
 start to use classification models to understand the difference between texts,
 we’ll do so using texts cleaned according to the above workflow. For now, we’ll
@@ -1241,7 +1264,7 @@ covered.</p>
 </section>
 </section>
 <section id="chunking-with-n-grams">
-<h2><span class="section-number">4.5. </span>Chunking with N-Grams<a class="headerlink" href="#chunking-with-n-grams" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.5. </span>Chunking with N-Grams<a class="headerlink" href="#chunking-with-n-grams" title="Link to this heading">#</a></h2>
 <p>We are now finished cleaning text. The last thing we’ll discuss in this session
 is <strong>chunking</strong>. Chunking is closely related to tokenization. It involves
 breaking text into multi-token spans. This is useful if you want to find
@@ -1626,11 +1649,10 @@ Shelley’s prose style.</p>
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="02_from-text-to-data.html"
@@ -1650,10 +1672,7 @@ Shelley’s prose style.</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1661,6 +1680,7 @@ Shelley’s prose style.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1716,6 +1736,7 @@ By Tyler Shoemaker and Carl Stahmer
   
   <div class="footer-item">
     
+
   </div>
   
   <div class="footer-item">
@@ -1741,8 +1762,8 @@ By Tyler Shoemaker and Carl Stahmer
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -187,12 +187,7 @@ def tokenize(examples):
     tokenized : dict
         Tokenized texts
     """
-    tokenized = tokenizer(
-        examples["text"],
-        return_tensors = "pt",
-        truncation = True,
-        padding = "max_length"
-    )
+    tokenized = tokenizer(examples["text"], truncation = True)
 
     return tokenized
 ```
@@ -582,7 +577,8 @@ tokenized = gpt_tokenizer(prompt, return_tensors = "pt", truncation = True)
 Note however that we aren't padding these tokens. Now, send to the model.
 
 ```{code-cell}
-generated = gpt(**tokenized)
+with torch.no_grad():
+    generated = gpt(**tokenized)
 ```
 
 It's possible to get the embeddings from various layers of this model, just as
@@ -646,8 +642,9 @@ Use the model's `.generate()` method to do all of this work:
 
 ```{code-cell}
 :tags: [remove-stderr]
-generated_token_ids = gpt.generate(**tokenized, max_new_tokens = 4)
-generated = gpt_tokenizer.decode(generated_token_ids.squeeze())
+with torch.no_grad():
+    generated_token_ids = gpt.generate(**tokenized, max_new_tokens = 4)
+    generated = gpt_tokenizer.decode(generated_token_ids.squeeze())
 
 print("Full sequence:", generated)
 ```
@@ -905,11 +902,11 @@ extract information from text.
 
 ```py
 config = GenerationConfig(
-    max_new_tokens=100,
-    num_beams=2,
-    early_stopping=True,
-    temperature=1
-    num_return_sequences=1
+    max_new_tokens = 100,
+    num_beams = 2,
+    early_stopping = True,
+    temperature = 1
+    num_return_sequences = 1
 )
 extractor = pipeline(
     "text-generation",
@@ -992,8 +989,8 @@ example, but the basic idea is this:
   some other kind of paired data)
 + Send every document in your corpus to this model to create an embedding for
   it
-+ When you'd like to search/summarize these documents, use that same document
-  to create an embedding for a search string/prompt. Then, return the k-most
++ When you'd like to search/summarize these documents, use that same model to
+  create an embedding for a search string/prompt. Then, return the k-most
   similar documents for that new embedding
 + Interpolate document text into your search string/prompt and then send that
   to a generative model, which will summarize the results

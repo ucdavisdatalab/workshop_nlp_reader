@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en-us" >
+<html lang="en-us" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>16. Large Language Models: An Introduction &#8212; Natural Language Processing for Data Science</title>
   
@@ -19,48 +18,46 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=69f72ec1" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=dddfd265"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/81_llms';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -75,7 +72,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -110,11 +115,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -129,9 +137,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="index.html">
+  
   
   
   
@@ -141,12 +151,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/datalab-logo-full-color-rgb.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/datalab-logo-full-color-rgb.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/datalab-logo-full-color-rgb.png" class="logo__image only-light" alt="Natural Language Processing for Data Science - Home"/>
+    <script>document.write(`<img src="../_static/datalab-logo-full-color-rgb.png" class="logo__image only-dark" alt="Natural Language Processing for Data Science - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -334,20 +355,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -400,10 +423,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="large-language-models-an-introduction">
-<h1><span class="section-number">16. </span>Large Language Models: An Introduction<a class="headerlink" href="#large-language-models-an-introduction" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">16. </span>Large Language Models: An Introduction<a class="headerlink" href="#large-language-models-an-introduction" title="Link to this heading">#</a></h1>
 <p>This chapter introduces large language models (LLMs). We will discuss
 tokenization strategies, model architecture, the attention mechanism, and
 dynamic embeddings.</p>
@@ -421,23 +444,18 @@ from a model</p></li>
 </ul>
 </div>
 <section id="preliminaries">
-<h2><span class="section-number">16.1. </span>Preliminaries<a class="headerlink" href="#preliminaries" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">16.1. </span>Preliminaries<a class="headerlink" href="#preliminaries" title="Link to this heading">#</a></h2>
 <p>We need the following libraries:</p>
 <div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="using-a-pretrained-model">
-<h3><span class="section-number">16.1.1. </span>Using a pretrained model<a class="headerlink" href="#using-a-pretrained-model" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">16.1.1. </span>Using a pretrained model<a class="headerlink" href="#using-a-pretrained-model" title="Link to this heading">#</a></h3>
 <aside class="margin sidebar">
 <p class="sidebar-title">A note on terminology</p>
 <p>In machine learning literature, you will see this idea of
@@ -461,7 +479,7 @@ platform. At the left, you’ll see categories for model types, task types, and
 more.</p>
 </section>
 <section id="loading-a-model">
-<h3><span class="section-number">16.1.2. </span>Loading a model<a class="headerlink" href="#loading-a-model" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">16.1.2. </span>Loading a model<a class="headerlink" href="#loading-a-model" title="Link to this heading">#</a></h3>
 <p>To load a model from Hugging Face, first specify the <strong>checkpoint</strong> you’d like
 to use. Typically this is just the name of the model.</p>
 <div class="cell docutils container">
@@ -494,7 +512,7 @@ location on your computer.</p>
 </section>
 </section>
 <section id="subword-tokenization">
-<h2><span class="section-number">16.2. </span>Subword Tokenization<a class="headerlink" href="#subword-tokenization" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">16.2. </span>Subword Tokenization<a class="headerlink" href="#subword-tokenization" title="Link to this heading">#</a></h2>
 <p>Note that we have initialized a tokenizer and model from the same checkpoint.
 This is important: LLMs depend on specific tokenizers, which are themselves
 trained on corpus data before their corresponding models even see that data.
@@ -526,7 +544,7 @@ determine said cutoff.</p>
 </div></blockquote>
 <p>See the hashes? This tokenizer prepends them to its subwords.</p>
 <section id="input-ids">
-<h3><span class="section-number">16.2.1. </span>Input IDs<a class="headerlink" href="#input-ids" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">16.2.1. </span>Input IDs<a class="headerlink" href="#input-ids" title="Link to this heading">#</a></h3>
 <p>The actual output of <code class="docutils literal notranslate"><span class="pre">transformers</span></code> tokenizer has a few parts. We use the
 following sentence as an example:</p>
 <div class="cell docutils container">
@@ -628,7 +646,7 @@ question answering, and summarization. When training, a model looks to <code cla
 to distinguish which parts of the input correspond to task components.</p>
 </section>
 <section id="token-type-ids">
-<h3><span class="section-number">16.2.2. </span>Token type IDs<a class="headerlink" href="#token-type-ids" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">16.2.2. </span>Token type IDs<a class="headerlink" href="#token-type-ids" title="Link to this heading">#</a></h3>
 <p>Some models don’t need anything more than <code class="docutils literal notranslate"><span class="pre">[CLS]</span></code> and <code class="docutils literal notranslate"><span class="pre">[SEP]</span></code> to make the above
 distinctions. But other models also incorporate <strong>token type IDs</strong> to further
 distinguish individual pieces of input. These IDs are binary values that tell
@@ -663,7 +681,7 @@ the model which parts of the input belong to what components in the task.</p>
 </div>
 </section>
 <section id="attention-mask">
-<h3><span class="section-number">16.2.3. </span>Attention mask<a class="headerlink" href="#attention-mask" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">16.2.3. </span>Attention mask<a class="headerlink" href="#attention-mask" title="Link to this heading">#</a></h3>
 <p>A final output, <strong>attention mask</strong>, tells the model what part of the input
 it should use when it processes the sequence.</p>
 <div class="cell docutils container">
@@ -680,7 +698,7 @@ it should use when it processes the sequence.</p>
 </div>
 </section>
 <section id="padding-and-truncation">
-<h3><span class="section-number">16.2.4. </span>Padding and truncation<a class="headerlink" href="#padding-and-truncation" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">16.2.4. </span>Padding and truncation<a class="headerlink" href="#padding-and-truncation" title="Link to this heading">#</a></h3>
 <p>It may seem like a redundancy to add an attention mask, but tokenizers often
 <strong>pad</strong> input sequences. While Transformer models can process sequences in
 parallel, which massively speeds up their run time, each sequence in a
@@ -860,7 +878,7 @@ a final tokenization workflow.</p>
 </section>
 </section>
 <section id="running-the-model">
-<h2><span class="section-number">16.3. </span>Running the Model<a class="headerlink" href="#running-the-model" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">16.3. </span>Running the Model<a class="headerlink" href="#running-the-model" title="Link to this heading">#</a></h2>
 <p>Now that we’ve tokenized our text, we can run our model. First, we move the
 model to a device (like a GPU, represented by <code class="docutils literal notranslate"><span class="pre">0</span></code> below). The <code class="docutils literal notranslate"><span class="pre">transformers</span></code>
 library is pretty good at doing this for us, but we can always set the device
@@ -908,7 +926,7 @@ disables dropout, which can make outputs inconsistent (e.g. non-deterministic).<
     (layer): ModuleList(
       (0-11): 12 x BertLayer(
         (attention): BertAttention(
-          (self): BertSdpaSelfAttention(
+          (self): BertSelfAttention(
             (query): Linear(in_features=768, out_features=768, bias=True)
             (key): Linear(in_features=768, out_features=768, bias=True)
             (value): Linear(in_features=768, out_features=768, bias=True)
@@ -954,7 +972,7 @@ the context manager built, send the inputs to the model.</p>
 </div>
 </div>
 <section id="model-outputs">
-<h3><span class="section-number">16.3.1. </span>Model outputs<a class="headerlink" href="#model-outputs" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">16.3.1. </span>Model outputs<a class="headerlink" href="#model-outputs" title="Link to this heading">#</a></h3>
 <p>There are several components in this output:</p>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
@@ -969,28 +987,28 @@ the context manager built, send the inputs to the model.</p>
          ...,
          [ 0.5548, -0.4396,  0.7075,  ...,  0.1718, -0.1337,  0.4442],
          [ 0.5042,  0.1461, -0.2642,  ...,  0.0728, -0.4193, -0.3139],
-         [ 0.4306,  0.1996, -0.0055,  ...,  0.1924, -0.5685, -0.3190]]]), pooler_output=tensor([[-9.0215e-01, -3.6355e-01, -8.6364e-01,  6.3150e-01,  5.2959e-01,
+         [ 0.4306,  0.1996, -0.0055,  ...,  0.1924, -0.5685, -0.3189]]]), pooler_output=tensor([[-9.0215e-01, -3.6355e-01, -8.6364e-01,  6.3150e-01,  5.2959e-01,
          -2.3988e-01,  7.8954e-01,  1.9048e-01, -7.7929e-01, -9.9996e-01,
          -1.1218e-01,  9.3984e-01,  9.7191e-01,  2.6334e-01,  8.9467e-01,
          -6.9052e-01, -3.4147e-01, -5.5349e-01,  2.6398e-01, -4.4079e-01,
           6.8211e-01,  9.9988e-01,  6.3717e-02,  1.4847e-01,  4.0085e-01,
           9.8006e-01, -5.9317e-01,  8.9493e-01,  9.5012e-01,  6.7092e-01,
-         -5.0414e-01,  1.7098e-01, -9.8875e-01,  9.4529e-03, -7.9112e-01,
+         -5.0414e-01,  1.7098e-01, -9.8875e-01,  9.4528e-03, -7.9112e-01,
          -9.8928e-01,  1.5902e-01, -6.4964e-01,  1.5020e-01,  1.5166e-01,
          -9.0359e-01,  2.1367e-01,  9.9995e-01, -4.1530e-01,  4.3635e-01,
          -1.1558e-01, -1.0000e+00,  2.2613e-01, -8.9463e-01,  8.5809e-01,
           8.1223e-01,  9.0436e-01,  8.7882e-02,  4.7012e-01,  4.0199e-01,
-         -2.3712e-01, -1.9334e-01,  4.6882e-04, -2.2115e-01, -5.5566e-01,
+         -2.3712e-01, -1.9334e-01,  4.6894e-04, -2.2115e-01, -5.5566e-01,
          -5.7362e-01,  3.4552e-01, -7.4646e-01, -8.7389e-01,  8.9060e-01,
           6.6513e-01, -2.7116e-02, -1.4315e-01, -4.6456e-02, -1.1431e-01,
           8.5752e-01,  4.0294e-02,  1.1696e-02, -8.3643e-01,  4.3631e-01,
-          1.6847e-01, -5.5569e-01,  1.0000e+00, -4.2451e-01, -9.7485e-01,
+          1.6847e-01, -5.5569e-01,  1.0000e+00, -4.2450e-01, -9.7485e-01,
           7.4691e-01,  6.4409e-01,  4.5656e-01,  7.3656e-02,  1.3891e-01,
          -1.0000e+00,  6.1069e-01,  8.5232e-02, -9.8454e-01,  5.9957e-02,
           5.2395e-01, -2.2201e-01,  1.2185e-01,  5.0690e-01, -3.0269e-01,
          -4.4167e-01, -1.1198e-01, -7.8108e-01, -9.9268e-02, -3.5597e-01,
          -1.5475e-02,  6.0668e-02, -2.7171e-01, -1.8928e-01,  2.8009e-01,
-         -4.4744e-01, -6.4973e-01,  2.8635e-01,  3.2423e-03,  5.7549e-01,
+         -4.4744e-01, -6.4973e-01,  2.8635e-01,  3.2424e-03,  5.7549e-01,
           3.8756e-01, -2.1564e-01,  2.9823e-01, -9.4773e-01,  5.1873e-01,
          -2.5598e-01, -9.8738e-01, -5.5347e-01, -9.8613e-01,  6.5802e-01,
          -1.9799e-01, -2.3325e-01,  9.4350e-01,  7.4329e-02,  2.8480e-01,
@@ -998,16 +1016,16 @@ the context manager built, send the inputs to the model.</p>
          -1.5427e-02, -2.2573e-01, -9.7104e-01, -9.5031e-01,  5.0464e-01,
           9.3296e-01,  1.1413e-01,  9.9982e-01, -1.4094e-01,  9.2251e-01,
          -1.1937e-02, -5.9505e-01,  6.0277e-01, -3.5788e-01,  6.4097e-01,
-         -5.7841e-02, -2.5286e-01,  2.0187e-01, -2.5656e-01,  4.5353e-01,
+         -5.7842e-02, -2.5286e-01,  2.0187e-01, -2.5656e-01,  4.5353e-01,
          -6.9229e-01, -3.8542e-03, -6.3896e-01, -8.9819e-01, -2.3500e-01,
-          9.3484e-01, -4.6395e-01, -8.6960e-01, -3.4996e-02, -7.0627e-02,
+          9.3484e-01, -4.6395e-01, -8.6960e-01, -3.4996e-02, -7.0628e-02,
          -3.8399e-01,  7.3087e-01,  7.5051e-01,  2.9726e-01, -3.3074e-01,
-          3.7799e-01, -1.4909e-01,  4.0023e-01, -7.6468e-01, -4.4099e-02,
+          3.7799e-01, -1.4909e-01,  4.0023e-01, -7.6468e-01, -4.4100e-02,
           4.0490e-01, -2.2321e-01, -6.1502e-01, -9.8328e-01, -2.5075e-01,
           5.6157e-01,  9.8075e-01,  6.5358e-01,  5.6203e-02,  7.9783e-01,
          -1.8338e-01,  7.3604e-01, -9.2419e-01,  9.7970e-01,  2.9938e-02,
-          5.1264e-02, -8.8993e-04,  5.2048e-01, -8.5517e-01, -2.0054e-01,
-          7.7441e-01, -6.9283e-01, -8.3609e-01, -9.7109e-04, -3.6640e-01,
+          5.1264e-02, -8.8996e-04,  5.2048e-01, -8.5517e-01, -2.0053e-01,
+          7.7441e-01, -6.9283e-01, -8.3609e-01, -9.7112e-04, -3.6640e-01,
          -2.3179e-01, -6.8952e-01,  5.6256e-01, -1.9093e-01, -1.7197e-01,
           1.5008e-01,  9.0820e-01,  9.2894e-01,  7.8880e-01,  1.3647e-01,
           6.8747e-01, -8.5234e-01, -3.4889e-01,  1.4948e-02,  7.0052e-02,
@@ -1036,7 +1054,7 @@ the context manager built, send the inputs to the model.</p>
          -7.7655e-01, -8.4988e-01,  6.1927e-01,  2.1021e-03, -3.2598e-01,
          -9.5913e-01, -1.0941e-01,  5.3905e-01,  7.7692e-01,  2.0210e-01,
           1.3288e-01, -5.2597e-01,  1.3350e-01, -3.0387e-01,  3.1106e-02,
-          6.0131e-01, -9.2876e-01, -4.0126e-01,  9.3838e-02, -9.1770e-02,
+          6.0131e-01, -9.2876e-01, -4.0126e-01,  9.3837e-02, -9.1770e-02,
          -2.1734e-01, -9.5718e-01,  9.5094e-01, -2.4999e-01,  8.7258e-01,
           1.0000e+00,  4.4012e-01, -8.2275e-01,  5.4966e-01,  1.5370e-01,
           2.0310e-01,  1.0000e+00,  7.8576e-01, -9.7345e-01, -5.6520e-01,
@@ -1055,7 +1073,7 @@ the context manager built, send the inputs to the model.</p>
           7.3116e-01,  9.7749e-01, -1.4626e-01,  5.5644e-01,  7.9268e-01,
          -8.0457e-01, -2.1986e-01, -5.8049e-01, -1.1498e-01, -9.2331e-01,
           2.5465e-01, -9.5982e-01,  9.4562e-01,  9.3056e-01,  2.6739e-01,
-         -4.9384e-04,  5.2062e-01,  1.0000e+00, -8.0677e-01,  3.9905e-01,
+         -4.9374e-04,  5.2062e-01,  1.0000e+00, -8.0677e-01,  3.9905e-01,
           2.6592e-01,  5.3715e-01, -9.9927e-01, -7.9586e-01, -3.2750e-01,
          -5.8726e-02, -6.6198e-01, -2.9297e-01,  1.0346e-01, -9.6175e-01,
           5.6368e-01,  5.5213e-01, -9.7025e-01, -9.8716e-01, -3.4926e-01,
@@ -1063,16 +1081,16 @@ the context manager built, send the inputs to the model.</p>
           5.8977e-01, -1.0241e-01, -9.3295e-01,  2.2246e-02, -1.3604e-01,
           5.2007e-01, -8.4998e-02,  5.1492e-01,  7.3342e-01,  8.4501e-01,
          -5.2785e-01, -2.8822e-01,  4.6259e-02, -6.9614e-01,  8.7093e-01,
-         -7.8254e-01, -8.6091e-01, -4.9410e-03,  1.0000e+00, -4.8026e-01,
+         -7.8254e-01, -8.6091e-01, -4.9411e-03,  1.0000e+00, -4.8026e-01,
           8.4091e-01,  6.7065e-01,  7.7482e-01, -1.2159e-01,  1.1097e-01,
-          7.9307e-01,  2.5259e-01, -4.3484e-01, -7.9768e-01, -5.9233e-03,
+          7.9307e-01,  2.5259e-01, -4.3484e-01, -7.9768e-01, -5.9230e-03,
          -2.7596e-01,  6.4743e-01,  4.9924e-01,  4.2030e-01,  7.4892e-01,
           7.1720e-01,  2.1605e-01,  1.7675e-01, -7.7313e-02,  9.9814e-01,
          -1.3775e-01, -1.5530e-01, -3.0964e-01,  4.3301e-02, -2.4627e-01,
           2.7069e-01,  1.0000e+00,  2.0974e-01,  4.2502e-01, -9.8813e-01,
          -7.9993e-01, -7.9667e-01,  1.0000e+00,  8.3059e-01, -8.1765e-01,
           7.4333e-01,  6.1189e-01,  6.8243e-02,  7.5832e-01, -1.0380e-02,
-          1.1044e-03,  1.9780e-01, -1.8199e-02,  9.3912e-01, -5.1335e-01,
+          1.1043e-03,  1.9780e-01, -1.8198e-02,  9.3912e-01, -5.1335e-01,
          -9.6651e-01, -5.2125e-01,  3.9677e-01, -9.5898e-01,  9.9963e-01,
          -5.3292e-01, -2.3007e-01, -4.3810e-01, -7.4668e-02, -4.8650e-01,
          -1.8025e-01, -9.8233e-01, -1.9585e-01,  1.0636e-01,  9.5299e-01,
@@ -1082,7 +1100,7 @@ the context manager built, send the inputs to the model.</p>
           3.1759e-01, -3.8244e-01,  6.9155e-01, -9.5553e-01, -2.3247e-01,
          -1.3807e-01,  2.2340e-01,  3.9980e-02, -6.1394e-01,  5.1713e-01,
           6.2565e-02, -4.7686e-01, -5.7325e-01,  3.2512e-02,  3.9323e-01,
-          8.0339e-01, -3.3118e-02, -1.3022e-01,  2.2383e-01, -2.0161e-02,
+          8.0339e-01, -3.3119e-02, -1.3022e-01,  2.2383e-01, -2.0161e-02,
          -8.4427e-01, -4.3153e-01, -4.6155e-01, -9.9996e-01,  4.6373e-01,
          -1.0000e+00,  3.2713e-01, -1.4122e-01, -2.0265e-01,  8.0648e-01,
           7.0225e-01,  6.5395e-01, -5.9549e-01, -7.6726e-01,  6.8309e-01,
@@ -1094,10 +1112,10 @@ the context manager built, send the inputs to the model.</p>
          -8.8283e-01,  9.0191e-01,  7.6542e-01, -5.9564e-01,  5.3151e-01,
          -1.7647e-01, -5.0729e-01, -1.2652e-01,  7.7420e-01,  9.8289e-01,
           1.4510e-01,  8.0867e-01, -1.6427e-01, -3.5557e-01,  9.6864e-01,
-          2.1303e-01, -3.8065e-03, -9.2923e-02,  1.0000e+00,  1.9231e-01,
+          2.1303e-01, -3.8066e-03, -9.2923e-02,  1.0000e+00,  1.9231e-01,
          -8.8242e-01,  7.1092e-02, -9.8139e-01, -2.3762e-02, -9.4682e-01,
           2.8557e-01,  5.2677e-02,  8.9981e-01, -1.9667e-01,  9.5172e-01,
-         -6.6690e-01,  6.6642e-04, -6.0149e-01, -2.4802e-01,  3.8019e-01,
+         -6.6690e-01,  6.6651e-04, -6.0149e-01, -2.4802e-01,  3.8019e-01,
          -8.9955e-01, -9.7870e-01, -9.8522e-01,  5.4832e-01, -4.1989e-01,
          -2.7977e-02,  1.0936e-01, -1.4552e-01,  2.4088e-01,  2.6210e-01,
          -1.0000e+00,  9.2344e-01,  3.4815e-01,  7.4503e-01,  9.6188e-01,
@@ -1105,7 +1123,7 @@ the context manager built, send the inputs to the model.</p>
          -1.6542e-01, -1.7331e-01,  4.8728e-01,  5.5929e-01,  8.0049e-01,
           3.6028e-01, -2.9847e-01, -5.4233e-01, -3.9048e-01, -9.2027e-01,
          -9.9083e-01,  2.3925e-01, -5.0385e-01, -9.1661e-01,  9.3613e-01,
-         -6.3137e-01, -2.6656e-02, -7.6421e-03, -6.3848e-01,  8.7719e-01,
+         -6.3137e-01, -2.6656e-02, -7.6423e-03, -6.3848e-01,  8.7719e-01,
           8.0430e-01,  1.3750e-01, -4.6426e-02,  3.8011e-01,  8.8338e-01,
           8.8459e-01,  9.7661e-01, -7.2297e-01,  6.2925e-01, -7.2241e-01,
           3.1132e-01,  8.6522e-01, -9.2078e-01,  4.3722e-02,  2.3552e-01,
@@ -1116,7 +1134,7 @@ the context manager built, send the inputs to the model.</p>
          -6.5079e-01, -8.6864e-01,  8.7466e-01,  9.9015e-02,  3.3872e-02,
           5.8198e-01, -3.2675e-01,  7.9461e-01,  8.8223e-02, -3.0361e-01,
          -2.4622e-01, -6.1891e-01,  8.8182e-01, -7.5603e-01, -3.8631e-01,
-         -3.5339e-01,  6.3820e-01,  2.1275e-01,  9.9991e-01, -6.3115e-01,
+         -3.5338e-01,  6.3820e-01,  2.1275e-01,  9.9991e-01, -6.3115e-01,
          -8.5991e-01, -6.4168e-01, -1.8362e-01,  2.6631e-01, -4.0186e-01,
          -1.0000e+00,  3.6668e-01, -5.3633e-01,  5.8175e-01, -5.9615e-01,
           7.6011e-01, -6.7364e-01, -9.5899e-01, -4.1586e-02,  6.7226e-01,
@@ -1194,13 +1212,13 @@ the context manager built, send the inputs to the model.</p>
          ...,
          [ 0.8555, -0.3486,  0.6021,  ...,  0.2175,  0.1230,  0.5547],
          [ 0.0507,  0.0111, -0.0194,  ...,  0.0255, -0.0229,  0.0141],
-         [ 0.0348, -0.0095, -0.0097,  ...,  0.0583, -0.0379, -0.0241]]]), tensor([[[-0.1813, -0.1627, -0.2402,  ..., -0.1174,  0.2389,  0.5933],
+         [ 0.0348, -0.0095, -0.0098,  ...,  0.0583, -0.0379, -0.0241]]]), tensor([[[-0.1813, -0.1627, -0.2402,  ..., -0.1174,  0.2389,  0.5933],
          [-0.1219,  0.2374, -0.8745,  ...,  0.3379,  0.4232, -0.2547],
          [ 0.3440,  0.2197, -0.0133,  ..., -0.1566,  0.2564,  0.2016],
          ...,
          [ 0.5548, -0.4396,  0.7075,  ...,  0.1718, -0.1337,  0.4442],
          [ 0.5042,  0.1461, -0.2642,  ...,  0.0728, -0.4193, -0.3139],
-         [ 0.4306,  0.1996, -0.0055,  ...,  0.1924, -0.5685, -0.3190]]])), past_key_values=None, attentions=None, cross_attentions=None)
+         [ 0.4306,  0.1996, -0.0055,  ...,  0.1924, -0.5685, -0.3189]]])), past_key_values=None, attentions=None, cross_attentions=None)
 </pre></div>
 </div>
 </div>
@@ -1222,7 +1240,7 @@ state size).</p>
          ...,
          [ 0.5548, -0.4396,  0.7075,  ...,  0.1718, -0.1337,  0.4442],
          [ 0.5042,  0.1461, -0.2642,  ...,  0.0728, -0.4193, -0.3139],
-         [ 0.4306,  0.1996, -0.0055,  ...,  0.1924, -0.5685, -0.3190]]])
+         [ 0.4306,  0.1996, -0.0055,  ...,  0.1924, -0.5685, -0.3189]]])
 </pre></div>
 </div>
 </div>
@@ -1245,22 +1263,22 @@ hidden state size).</p>
          -6.9052e-01, -3.4147e-01, -5.5349e-01,  2.6398e-01, -4.4079e-01,
           6.8211e-01,  9.9988e-01,  6.3717e-02,  1.4847e-01,  4.0085e-01,
           9.8006e-01, -5.9317e-01,  8.9493e-01,  9.5012e-01,  6.7092e-01,
-         -5.0414e-01,  1.7098e-01, -9.8875e-01,  9.4529e-03, -7.9112e-01,
+         -5.0414e-01,  1.7098e-01, -9.8875e-01,  9.4528e-03, -7.9112e-01,
          -9.8928e-01,  1.5902e-01, -6.4964e-01,  1.5020e-01,  1.5166e-01,
          -9.0359e-01,  2.1367e-01,  9.9995e-01, -4.1530e-01,  4.3635e-01,
          -1.1558e-01, -1.0000e+00,  2.2613e-01, -8.9463e-01,  8.5809e-01,
           8.1223e-01,  9.0436e-01,  8.7882e-02,  4.7012e-01,  4.0199e-01,
-         -2.3712e-01, -1.9334e-01,  4.6882e-04, -2.2115e-01, -5.5566e-01,
+         -2.3712e-01, -1.9334e-01,  4.6894e-04, -2.2115e-01, -5.5566e-01,
          -5.7362e-01,  3.4552e-01, -7.4646e-01, -8.7389e-01,  8.9060e-01,
           6.6513e-01, -2.7116e-02, -1.4315e-01, -4.6456e-02, -1.1431e-01,
           8.5752e-01,  4.0294e-02,  1.1696e-02, -8.3643e-01,  4.3631e-01,
-          1.6847e-01, -5.5569e-01,  1.0000e+00, -4.2451e-01, -9.7485e-01,
+          1.6847e-01, -5.5569e-01,  1.0000e+00, -4.2450e-01, -9.7485e-01,
           7.4691e-01,  6.4409e-01,  4.5656e-01,  7.3656e-02,  1.3891e-01,
          -1.0000e+00,  6.1069e-01,  8.5232e-02, -9.8454e-01,  5.9957e-02,
           5.2395e-01, -2.2201e-01,  1.2185e-01,  5.0690e-01, -3.0269e-01,
          -4.4167e-01, -1.1198e-01, -7.8108e-01, -9.9268e-02, -3.5597e-01,
          -1.5475e-02,  6.0668e-02, -2.7171e-01, -1.8928e-01,  2.8009e-01,
-         -4.4744e-01, -6.4973e-01,  2.8635e-01,  3.2423e-03,  5.7549e-01,
+         -4.4744e-01, -6.4973e-01,  2.8635e-01,  3.2424e-03,  5.7549e-01,
           3.8756e-01, -2.1564e-01,  2.9823e-01, -9.4773e-01,  5.1873e-01,
          -2.5598e-01, -9.8738e-01, -5.5347e-01, -9.8613e-01,  6.5802e-01,
          -1.9799e-01, -2.3325e-01,  9.4350e-01,  7.4329e-02,  2.8480e-01,
@@ -1268,16 +1286,16 @@ hidden state size).</p>
          -1.5427e-02, -2.2573e-01, -9.7104e-01, -9.5031e-01,  5.0464e-01,
           9.3296e-01,  1.1413e-01,  9.9982e-01, -1.4094e-01,  9.2251e-01,
          -1.1937e-02, -5.9505e-01,  6.0277e-01, -3.5788e-01,  6.4097e-01,
-         -5.7841e-02, -2.5286e-01,  2.0187e-01, -2.5656e-01,  4.5353e-01,
+         -5.7842e-02, -2.5286e-01,  2.0187e-01, -2.5656e-01,  4.5353e-01,
          -6.9229e-01, -3.8542e-03, -6.3896e-01, -8.9819e-01, -2.3500e-01,
-          9.3484e-01, -4.6395e-01, -8.6960e-01, -3.4996e-02, -7.0627e-02,
+          9.3484e-01, -4.6395e-01, -8.6960e-01, -3.4996e-02, -7.0628e-02,
          -3.8399e-01,  7.3087e-01,  7.5051e-01,  2.9726e-01, -3.3074e-01,
-          3.7799e-01, -1.4909e-01,  4.0023e-01, -7.6468e-01, -4.4099e-02,
+          3.7799e-01, -1.4909e-01,  4.0023e-01, -7.6468e-01, -4.4100e-02,
           4.0490e-01, -2.2321e-01, -6.1502e-01, -9.8328e-01, -2.5075e-01,
           5.6157e-01,  9.8075e-01,  6.5358e-01,  5.6203e-02,  7.9783e-01,
          -1.8338e-01,  7.3604e-01, -9.2419e-01,  9.7970e-01,  2.9938e-02,
-          5.1264e-02, -8.8993e-04,  5.2048e-01, -8.5517e-01, -2.0054e-01,
-          7.7441e-01, -6.9283e-01, -8.3609e-01, -9.7109e-04, -3.6640e-01,
+          5.1264e-02, -8.8996e-04,  5.2048e-01, -8.5517e-01, -2.0053e-01,
+          7.7441e-01, -6.9283e-01, -8.3609e-01, -9.7112e-04, -3.6640e-01,
          -2.3179e-01, -6.8952e-01,  5.6256e-01, -1.9093e-01, -1.7197e-01,
           1.5008e-01,  9.0820e-01,  9.2894e-01,  7.8880e-01,  1.3647e-01,
           6.8747e-01, -8.5234e-01, -3.4889e-01,  1.4948e-02,  7.0052e-02,
@@ -1306,7 +1324,7 @@ hidden state size).</p>
          -7.7655e-01, -8.4988e-01,  6.1927e-01,  2.1021e-03, -3.2598e-01,
          -9.5913e-01, -1.0941e-01,  5.3905e-01,  7.7692e-01,  2.0210e-01,
           1.3288e-01, -5.2597e-01,  1.3350e-01, -3.0387e-01,  3.1106e-02,
-          6.0131e-01, -9.2876e-01, -4.0126e-01,  9.3838e-02, -9.1770e-02,
+          6.0131e-01, -9.2876e-01, -4.0126e-01,  9.3837e-02, -9.1770e-02,
          -2.1734e-01, -9.5718e-01,  9.5094e-01, -2.4999e-01,  8.7258e-01,
           1.0000e+00,  4.4012e-01, -8.2275e-01,  5.4966e-01,  1.5370e-01,
           2.0310e-01,  1.0000e+00,  7.8576e-01, -9.7345e-01, -5.6520e-01,
@@ -1325,7 +1343,7 @@ hidden state size).</p>
           7.3116e-01,  9.7749e-01, -1.4626e-01,  5.5644e-01,  7.9268e-01,
          -8.0457e-01, -2.1986e-01, -5.8049e-01, -1.1498e-01, -9.2331e-01,
           2.5465e-01, -9.5982e-01,  9.4562e-01,  9.3056e-01,  2.6739e-01,
-         -4.9384e-04,  5.2062e-01,  1.0000e+00, -8.0677e-01,  3.9905e-01,
+         -4.9374e-04,  5.2062e-01,  1.0000e+00, -8.0677e-01,  3.9905e-01,
           2.6592e-01,  5.3715e-01, -9.9927e-01, -7.9586e-01, -3.2750e-01,
          -5.8726e-02, -6.6198e-01, -2.9297e-01,  1.0346e-01, -9.6175e-01,
           5.6368e-01,  5.5213e-01, -9.7025e-01, -9.8716e-01, -3.4926e-01,
@@ -1333,16 +1351,16 @@ hidden state size).</p>
           5.8977e-01, -1.0241e-01, -9.3295e-01,  2.2246e-02, -1.3604e-01,
           5.2007e-01, -8.4998e-02,  5.1492e-01,  7.3342e-01,  8.4501e-01,
          -5.2785e-01, -2.8822e-01,  4.6259e-02, -6.9614e-01,  8.7093e-01,
-         -7.8254e-01, -8.6091e-01, -4.9410e-03,  1.0000e+00, -4.8026e-01,
+         -7.8254e-01, -8.6091e-01, -4.9411e-03,  1.0000e+00, -4.8026e-01,
           8.4091e-01,  6.7065e-01,  7.7482e-01, -1.2159e-01,  1.1097e-01,
-          7.9307e-01,  2.5259e-01, -4.3484e-01, -7.9768e-01, -5.9233e-03,
+          7.9307e-01,  2.5259e-01, -4.3484e-01, -7.9768e-01, -5.9230e-03,
          -2.7596e-01,  6.4743e-01,  4.9924e-01,  4.2030e-01,  7.4892e-01,
           7.1720e-01,  2.1605e-01,  1.7675e-01, -7.7313e-02,  9.9814e-01,
          -1.3775e-01, -1.5530e-01, -3.0964e-01,  4.3301e-02, -2.4627e-01,
           2.7069e-01,  1.0000e+00,  2.0974e-01,  4.2502e-01, -9.8813e-01,
          -7.9993e-01, -7.9667e-01,  1.0000e+00,  8.3059e-01, -8.1765e-01,
           7.4333e-01,  6.1189e-01,  6.8243e-02,  7.5832e-01, -1.0380e-02,
-          1.1044e-03,  1.9780e-01, -1.8199e-02,  9.3912e-01, -5.1335e-01,
+          1.1043e-03,  1.9780e-01, -1.8198e-02,  9.3912e-01, -5.1335e-01,
          -9.6651e-01, -5.2125e-01,  3.9677e-01, -9.5898e-01,  9.9963e-01,
          -5.3292e-01, -2.3007e-01, -4.3810e-01, -7.4668e-02, -4.8650e-01,
          -1.8025e-01, -9.8233e-01, -1.9585e-01,  1.0636e-01,  9.5299e-01,
@@ -1352,7 +1370,7 @@ hidden state size).</p>
           3.1759e-01, -3.8244e-01,  6.9155e-01, -9.5553e-01, -2.3247e-01,
          -1.3807e-01,  2.2340e-01,  3.9980e-02, -6.1394e-01,  5.1713e-01,
           6.2565e-02, -4.7686e-01, -5.7325e-01,  3.2512e-02,  3.9323e-01,
-          8.0339e-01, -3.3118e-02, -1.3022e-01,  2.2383e-01, -2.0161e-02,
+          8.0339e-01, -3.3119e-02, -1.3022e-01,  2.2383e-01, -2.0161e-02,
          -8.4427e-01, -4.3153e-01, -4.6155e-01, -9.9996e-01,  4.6373e-01,
          -1.0000e+00,  3.2713e-01, -1.4122e-01, -2.0265e-01,  8.0648e-01,
           7.0225e-01,  6.5395e-01, -5.9549e-01, -7.6726e-01,  6.8309e-01,
@@ -1364,10 +1382,10 @@ hidden state size).</p>
          -8.8283e-01,  9.0191e-01,  7.6542e-01, -5.9564e-01,  5.3151e-01,
          -1.7647e-01, -5.0729e-01, -1.2652e-01,  7.7420e-01,  9.8289e-01,
           1.4510e-01,  8.0867e-01, -1.6427e-01, -3.5557e-01,  9.6864e-01,
-          2.1303e-01, -3.8065e-03, -9.2923e-02,  1.0000e+00,  1.9231e-01,
+          2.1303e-01, -3.8066e-03, -9.2923e-02,  1.0000e+00,  1.9231e-01,
          -8.8242e-01,  7.1092e-02, -9.8139e-01, -2.3762e-02, -9.4682e-01,
           2.8557e-01,  5.2677e-02,  8.9981e-01, -1.9667e-01,  9.5172e-01,
-         -6.6690e-01,  6.6642e-04, -6.0149e-01, -2.4802e-01,  3.8019e-01,
+         -6.6690e-01,  6.6651e-04, -6.0149e-01, -2.4802e-01,  3.8019e-01,
          -8.9955e-01, -9.7870e-01, -9.8522e-01,  5.4832e-01, -4.1989e-01,
          -2.7977e-02,  1.0936e-01, -1.4552e-01,  2.4088e-01,  2.6210e-01,
          -1.0000e+00,  9.2344e-01,  3.4815e-01,  7.4503e-01,  9.6188e-01,
@@ -1375,7 +1393,7 @@ hidden state size).</p>
          -1.6542e-01, -1.7331e-01,  4.8728e-01,  5.5929e-01,  8.0049e-01,
           3.6028e-01, -2.9847e-01, -5.4233e-01, -3.9048e-01, -9.2027e-01,
          -9.9083e-01,  2.3925e-01, -5.0385e-01, -9.1661e-01,  9.3613e-01,
-         -6.3137e-01, -2.6656e-02, -7.6421e-03, -6.3848e-01,  8.7719e-01,
+         -6.3137e-01, -2.6656e-02, -7.6423e-03, -6.3848e-01,  8.7719e-01,
           8.0430e-01,  1.3750e-01, -4.6426e-02,  3.8011e-01,  8.8338e-01,
           8.8459e-01,  9.7661e-01, -7.2297e-01,  6.2925e-01, -7.2241e-01,
           3.1132e-01,  8.6522e-01, -9.2078e-01,  4.3722e-02,  2.3552e-01,
@@ -1386,7 +1404,7 @@ hidden state size).</p>
          -6.5079e-01, -8.6864e-01,  8.7466e-01,  9.9015e-02,  3.3872e-02,
           5.8198e-01, -3.2675e-01,  7.9461e-01,  8.8223e-02, -3.0361e-01,
          -2.4622e-01, -6.1891e-01,  8.8182e-01, -7.5603e-01, -3.8631e-01,
-         -3.5339e-01,  6.3820e-01,  2.1275e-01,  9.9991e-01, -6.3115e-01,
+         -3.5338e-01,  6.3820e-01,  2.1275e-01,  9.9991e-01, -6.3115e-01,
          -8.5991e-01, -6.4168e-01, -1.8362e-01,  2.6631e-01, -4.0186e-01,
          -1.0000e+00,  3.6668e-01, -5.3633e-01,  5.8175e-01, -5.9615e-01,
           7.6011e-01, -6.7364e-01, -9.5899e-01, -4.1586e-02,  6.7226e-01,
@@ -1491,14 +1509,14 @@ the shape (batch size, sequence length, hidden state size).</p>
           ...,
           [ 0.8555, -0.3486,  0.6021,  ...,  0.2175,  0.1230,  0.5547],
           [ 0.0507,  0.0111, -0.0194,  ...,  0.0255, -0.0229,  0.0141],
-          [ 0.0348, -0.0095, -0.0097,  ...,  0.0583, -0.0379, -0.0241]]]),
+          [ 0.0348, -0.0095, -0.0098,  ...,  0.0583, -0.0379, -0.0241]]]),
  tensor([[[-0.1813, -0.1627, -0.2402,  ..., -0.1174,  0.2389,  0.5933],
           [-0.1219,  0.2374, -0.8745,  ...,  0.3379,  0.4232, -0.2547],
           [ 0.3440,  0.2197, -0.0133,  ..., -0.1566,  0.2564,  0.2016],
           ...,
           [ 0.5548, -0.4396,  0.7075,  ...,  0.1718, -0.1337,  0.4442],
           [ 0.5042,  0.1461, -0.2642,  ...,  0.0728, -0.4193, -0.3139],
-          [ 0.4306,  0.1996, -0.0055,  ...,  0.1924, -0.5685, -0.3190]]]))
+          [ 0.4306,  0.1996, -0.0055,  ...,  0.1924, -0.5685, -0.3189]]]))
 </pre></div>
 </div>
 </div>
@@ -1513,7 +1531,7 @@ attending to tokens across input pairs</p></li>
 </ul>
 </section>
 <section id="which-layer-which-token">
-<h3><span class="section-number">16.3.2. </span>Which layer? Which token?<a class="headerlink" href="#which-layer-which-token" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">16.3.2. </span>Which layer? Which token?<a class="headerlink" href="#which-layer-which-token" title="Link to this heading">#</a></h3>
 <p>The next chapter will demonstrate a classification task with BERT. This
 involves modifying the network layers to output one of a set of labels for
 input. All this will happen inside the model itself, but it’s also perfectly
@@ -1579,11 +1597,10 @@ sequence. The same cannot always be said of other tokens.</p>
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="80_logistics.html"
@@ -1603,10 +1620,7 @@ sequence. The same cannot always be said of other tokens.</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1614,6 +1628,7 @@ sequence. The same cannot always be said of other tokens.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1659,6 +1674,7 @@ By Tyler Shoemaker and Carl Stahmer
   
   <div class="footer-item">
     
+
   </div>
   
   <div class="footer-item">
@@ -1684,8 +1700,8 @@ By Tyler Shoemaker and Carl Stahmer
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>
